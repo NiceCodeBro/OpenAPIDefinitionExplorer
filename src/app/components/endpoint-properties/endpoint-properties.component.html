@@ -1,22 +1,25 @@
 
-<span *ngIf="dataVal && isExpanded; then other_content1 else other_content2"></span>
+    <button *ngIf="dataVal && hasProperties" type="button"  (click)="onClick()" [ngStyle]="{'margin-left.px':compLevel}">{{dataKey}}</button>
 
-<button *ngIf="dataVal && hasProperties" type="button"  (click)="onClick()">{{dataKey}}</button>
-<ng-template #other_content1 >
-    <div  *ngIf="dataVal.type == 'object'">
-        <div class="content" *ngFor="let item of dataVal.properties | keyvalue">
-            <app-endpoint-properties  [dataKey]="item.key" [dataVal]="item.value"></app-endpoint-properties>
+    <span *ngIf="dataVal && isExpanded; then other_content1 else other_content2"></span>
+
+
+    <ng-template #other_content1 >
+        <div  *ngIf="dataVal.type == 'object'" [ngStyle]="{'margin-left.px':compLevel}">
+            <div class="content" *ngFor="let item of dataVal.properties | keyvalue">
+                <app-endpoint-properties  [dataKey]="item.key" [dataVal]="item.value" [compLevel]="nextLevelValue()"></app-endpoint-properties>
+            </div>
         </div>
-    </div>
- </ng-template>
+    </ng-template>
 
- <ng-template #other_content2 >
-    <div *ngIf="!hasProperties">
-        <b>{{dataKey}}: </b> 
-        <span  *ngIf="dataVal.type == 'string' || dataVal.type == 'integer'">{{dataVal.type}} 
-            <span *ngIf="dataVal.description"> - {{dataVal.description}}</span>
-        </span>
-        <span  *ngIf="dataVal.type == 'array'"> {{dataVal.type}}<{{dataVal.items.type}}></span>
-        <span  *ngIf="dataVal.type == 'number'">{{dataVal.type}}</span>
-    </div>
-</ng-template>
+    <ng-template #other_content2 >
+        <div *ngIf="!hasProperties" [ngStyle]="{'margin-left.px':compLevel}">
+            <b>{{dataKey}}: </b> 
+            <span  *ngIf="dataVal.type == 'string' || dataVal.type == 'integer'">{{dataVal.type}} 
+                <span *ngIf="dataVal.description"> - {{dataVal.description}}</span>
+            </span>
+            <span  *ngIf="dataVal.type == 'array'"> {{dataVal.type}}<{{dataVal.items.type}}></span>
+            <span  *ngIf="dataVal.type == 'number'">{{dataVal.type}}</span>
+        </div>
+    </ng-template>
+
