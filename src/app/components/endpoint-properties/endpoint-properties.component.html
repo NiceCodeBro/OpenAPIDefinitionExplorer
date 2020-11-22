@@ -1,5 +1,7 @@
 
-<span *ngIf="dataVal && hasSubProps" type="button"  (click)="onClick()" [ngStyle]="{'margin-left.px':10}"><app-arrow [isExpanded]="isExpanded"></app-arrow>{{dataKey}}</span>
+<span *ngIf="dataVal && hasSubProps" type="button"  (click)="onClick()" [ngStyle]="{'margin-left.px':10}">
+    <app-arrow [isExpanded]="isExpanded"></app-arrow>  {{dataKey}}
+</span>
 
 <span *ngIf="dataVal && isExpanded; then other_content1 else other_content2"></span>
 

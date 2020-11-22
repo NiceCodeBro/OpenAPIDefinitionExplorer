@@ -1,0 +1,15 @@
+.path-fieldset {
+    margin-top: 50px;
+  }
+
+
+  fieldset {
+    width: 50%;
+    border: 2px solid gray;
+    margin: auto;
+    margin-top: 10px;
+
+}
+legend {
+    color: gray;
+}

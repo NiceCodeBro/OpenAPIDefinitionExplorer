@@ -1,6 +1,12 @@
+.arrow {
+    width: 15px;
+    height: 15px;
+    margin-right: 3px;
+    position: relative;
+    top: 3px;
+}
 .expandedArrow {
     content: url("../../../assets/expanded_arrow_icon.svg");
-    width: 15px;
 }
 
 .collapsedArrow {
@@ -10,5 +16,4 @@
     -ms-transform: rotate(180deg);
     -o-transform: rotate(180deg);
     transform: rotate(180deg);
-    width: 15px;
 }
