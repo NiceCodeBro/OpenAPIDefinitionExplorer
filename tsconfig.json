@@ -15,6 +15,25 @@
     "lib": [
       "es2018",
       "dom"
-    ]
-  }
+    ],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true, 
+    "paths": {
+      "stream": [
+        "node_modules/stream-browserify"
+      ],
+      "http": [
+        "node_modules/http-browserify"
+      ],
+      "https": [
+        "node_modules/https-browserify"
+      ],
+  
+  
+    }
+  },
+  "angularCompilerOptions": {
+    "types" : ["node"]
+  },
+  "typeRoots": [ "node_modules/@types" ]
 }

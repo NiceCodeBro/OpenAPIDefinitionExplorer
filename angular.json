@@ -12,6 +12,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
+   
           "options": {
             "outputPath": "dist/openapi-explorer",
             "index": "src/index.html",
@@ -21,12 +22,15 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/openapi-simple.yaml",
+              "src/openapi-complex.yaml"
             ],
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": ["@apidevtools/swagger-parser"]
           },
           "configurations": {
             "production": {
