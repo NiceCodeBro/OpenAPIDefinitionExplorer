@@ -23,7 +23,6 @@ export class EndpointPropertiesComponent implements OnInit {
   }
 
   ngOnChanges() {
-    console.log(this.dataKey, this.dataVal)
   }
 
 }

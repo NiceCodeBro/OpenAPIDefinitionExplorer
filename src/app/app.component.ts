@@ -20,9 +20,6 @@ export class AppComponent {
   onClick() {
     this.isExpanded = !this.isExpanded;
   }
-
-
-
   
   myFunc(): Promise<any> {
     let parser = new SwaggerParser();
@@ -37,20 +34,14 @@ export class AppComponent {
                   // if we can reach this point, content is valid, we can save it into our array
                   if (value3['content'] && value3['content']['application/json'] && 
                       key3 && value3['content']['application/json'].schema) { 
-                       // console.log(value3)
+
                       var tempObj = { endPoint: key}
                       tempObj['properties'] = value3['content']['application/json'].schema.properties;
-                  
-                      const properties = value3['content']['application/json'].schema.properties;
-                      for (let [key4, value4] of  Object.entries(properties)) {
-                        tempObj[key4] = value4;
-                      }
                       this.validEndPoints.push(tempObj);
                   }
               }
           }
       }
-      console.log(this.validEndPoints);
     });
   }
 }
