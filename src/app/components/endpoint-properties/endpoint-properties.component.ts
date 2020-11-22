@@ -9,7 +9,7 @@ export class EndpointPropertiesComponent implements OnInit {
   @Input() dataKey: any;
   @Input() dataVal: any;
 
-  hasProperties: boolean = false;
+  hasSubProps: boolean = false;
   isExpanded: boolean = false;
 
   constructor() { }
@@ -19,7 +19,7 @@ export class EndpointPropertiesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.hasProperties = this.dataVal.properties !== undefined;
+    this.hasSubProps = this.dataVal.properties !== undefined;
   }
 
   ngOnChanges() {

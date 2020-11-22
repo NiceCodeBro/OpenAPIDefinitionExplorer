@@ -6,8 +6,8 @@ import { Component, OnInit, Input} from '@angular/core';
   styleUrls: ['./endpoint.component.css']
 })
 export class EndpointComponent implements OnInit {
-  @Input() endPoint: any;
-  @Input() properties: any;
+  @Input() name: any;
+  @Input() props: any;
   isExpanded: boolean = false;
 
   constructor() { }

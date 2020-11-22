@@ -1,6 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import SwaggerParser from "@apidevtools/swagger-parser";
-//import {api} from './parser';
 
 @Component({
   selector: 'app-root',
@@ -9,22 +8,18 @@ import SwaggerParser from "@apidevtools/swagger-parser";
 })
 export class AppComponent {
   title = 'openapi-explorer';
-  validEndPoints = [];
-  @ViewChild('child') childElements; 
-  isExpanded: boolean = false;
+  valEndPoints = [];
 
   ngOnInit()	{
-   this.myFunc()
-  }
-
-  onClick() {
-    this.isExpanded = !this.isExpanded;
+    var apiFileName = "openapi-complex.yaml";
+   // var apiFileName = "openapi-simple.yaml";
+    this.openApiSpecParser(apiFileName)
   }
   
-  myFunc(): Promise<any> {
-    let parser = new SwaggerParser();
+  openApiSpecParser(apiFileName:string): Promise<any> {
+    const parser = new SwaggerParser();
 
-    return parser.dereference("openapi-complex.yaml").then((api)=> {
+    return parser.dereference(apiFileName).then((api)=> {
       for (let [key, value] of Object.entries(api.paths)) {
           //key: /random-string -  value: {get : {...}}
           for (let [key2, value2] of Object.entries(value)) {
@@ -34,10 +29,10 @@ export class AppComponent {
                   // if we can reach this point, content is valid, we can save it into our array
                   if (value3['content'] && value3['content']['application/json'] && 
                       key3 && value3['content']['application/json'].schema) { 
-
-                      var tempObj = { endPoint: key}
+                        
+                      var tempObj = { endPointName: key.substring(1)}
                       tempObj['properties'] = value3['content']['application/json'].schema.properties;
-                      this.validEndPoints.push(tempObj);
+                      this.valEndPoints.push(tempObj);
                   }
               }
           }

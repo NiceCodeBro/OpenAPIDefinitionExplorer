@@ -1,5 +1,5 @@
 
-    <button *ngIf="dataVal && hasProperties" type="button"  (click)="onClick()" [ngStyle]="{'margin-left.px':10}">{{dataKey}}</button>
+    <button *ngIf="dataVal && hasSubProps" type="button"  (click)="onClick()" [ngStyle]="{'margin-left.px':10}">{{dataKey}}</button>
 
     <span *ngIf="dataVal && isExpanded; then other_content1 else other_content2"></span>
 
@@ -13,7 +13,7 @@
     </ng-template>
 
     <ng-template #other_content2 >
-        <div *ngIf="!hasProperties" [ngStyle]="{'margin-left.px':10}">
+        <div *ngIf="!hasSubProps" [ngStyle]="{'margin-left.px':10}">
             <b>{{dataKey}}: </b> 
             <span  *ngIf="dataVal.type == 'string' || dataVal.type == 'integer'">{{dataVal.type}} 
                 <span *ngIf="dataVal.description"> - {{dataVal.description}}</span>
