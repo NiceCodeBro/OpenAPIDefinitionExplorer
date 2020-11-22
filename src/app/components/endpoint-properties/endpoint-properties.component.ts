@@ -21,8 +21,4 @@ export class EndpointPropertiesComponent implements OnInit {
   ngOnInit(): void {
     this.hasSubProps = this.dataVal.properties !== undefined;
   }
-
-  ngOnChanges() {
-  }
-
 }

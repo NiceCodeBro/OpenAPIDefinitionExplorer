@@ -1,0 +1,14 @@
+.expandedArrow {
+    content: url("../../../assets/expanded_arrow_icon.svg");
+    width: 15px;
+}
+
+.collapsedArrow {
+    content: url("../../../assets/expanded_arrow_icon.svg");
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+    width: 15px;
+}

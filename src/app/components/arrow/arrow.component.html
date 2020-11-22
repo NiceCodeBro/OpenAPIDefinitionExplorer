@@ -1,0 +1,9 @@
+<div *ngIf="isExpanded; then arrowDown else arrowUp"></div>
+
+<ng-template #arrowUp>
+    <img class="expandedArrow">
+</ng-template>
+
+<ng-template #arrowDown>
+    <img class="collapsedArrow">
+</ng-template>
