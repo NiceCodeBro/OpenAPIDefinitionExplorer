@@ -17,7 +17,8 @@
 
 .apiIcon {
     content: url("../assets/openapi_icon_132133.svg");
-    width: 70px;
+    width: 55px;
+    margin-right: 10px;
 }
 
 .header-text {
@@ -29,7 +30,7 @@ fieldset {
     border: 2px solid gray;
     margin: auto;
     margin-top: 10px;
-    background-color: honeydew;
+    background-color: white;
 }
 
 legend {
