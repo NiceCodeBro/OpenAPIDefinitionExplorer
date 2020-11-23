@@ -3,6 +3,6 @@
 <div *ngIf="isExpanded; then content"></div>
 <ng-template #content>
     <div *ngFor="let prop of props | keyvalue">
-        <app-endpoint-properties [dataKey]="prop.key" [dataVal]="prop.value"></app-endpoint-properties>
+        <app-endpoint-properties [dataKey]="prop.key" [dataVal]="prop.value" [typedEPTail]="typedEPTail"></app-endpoint-properties>
     </div>
 </ng-template>

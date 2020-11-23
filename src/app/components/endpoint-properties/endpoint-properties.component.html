@@ -8,7 +8,7 @@
 <ng-template #other_content1 >
     <div  *ngIf="dataVal.type == 'object'" [ngStyle]="{'margin-left.px':10}">
         <div class="content" *ngFor="let item of dataVal.properties | keyvalue">
-            <app-endpoint-properties  [dataKey]="item.key" [dataVal]="item.value"></app-endpoint-properties>
+            <app-endpoint-properties  [dataKey]="item.key" [dataVal]="item.value" [typedEPTail]="typedEPTailRest"></app-endpoint-properties>
         </div>
     </div>
 </ng-template>

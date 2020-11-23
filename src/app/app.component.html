@@ -1,5 +1,4 @@
 <div class="container">
-
     <div class="header">
         <img class="apiIcon">
         <span class="header-text">OpenAPI Definition Explorer</span>
@@ -8,13 +7,15 @@
     <div class="main-content">
         <fieldset class="fieldset path-fieldset">
             <legend> Path </legend>
-            <input class="text-field" type="text" id="lname" name="lname">
+            <input class="text-field" type="text" (keyup)="onTextChange($event.target.value)">
         </fieldset>
 
         <fieldset class="fieldset">
             <legend> Endpoints </legend>
             <div *ngFor="let endPoint of valEndPoints">
-                <app-endpoint [name]="endPoint.endPointName" [props]="endPoint.properties"></app-endpoint>
+                <app-endpoint [name]="endPoint.endPointName" [props]="endPoint.properties" 
+                              [typedEPName]="typedEPName" [typedEPTail]="typedEPTail">
+                </app-endpoint>
             </div>
         </fieldset>
     </div>
