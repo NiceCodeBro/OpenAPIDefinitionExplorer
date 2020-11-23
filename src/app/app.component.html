@@ -1,10 +1,20 @@
-<fieldset class="fieldset path-fieldset">
-    <legend> Path </legend>
+<div class="container">
     
-</fieldset>
-<fieldset class="fieldset">
-    <legend> Endpoints </legend>
-    <div *ngFor="let endPoint of valEndPoints">
-        <app-endpoint [name]="endPoint.endPointName" [props]="endPoint.properties"></app-endpoint>
+    <div class="header">
+        <img class="apiIcon">
+        <span class="header-text">OpenAPI Definition Explorer</span>
     </div>
-</fieldset>
+
+    <div class="main-content">
+        <fieldset class="fieldset path-fieldset">
+            <legend> Path </legend>
+        </fieldset>
+
+        <fieldset class="fieldset">
+            <legend> Endpoints </legend>
+            <div *ngFor="let endPoint of valEndPoints">
+                <app-endpoint [name]="endPoint.endPointName" [props]="endPoint.properties"></app-endpoint>
+            </div>
+        </fieldset>
+    </div>
+</div>

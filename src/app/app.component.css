@@ -1,15 +1,38 @@
+.container {
+    margin-top: 50px;
+}
+
 .path-fieldset {
     margin-top: 50px;
-  }
+}
 
-
-  fieldset {
+.header {
+    margin: auto;
     width: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.apiIcon {
+    content: url("../assets/openapi_icon_132133.svg");
+    width: 70px;
+}
+
+.header-text {
+    font-size: 40px;
+}
+
+fieldset {
+    max-width: 50%;
     border: 2px solid gray;
     margin: auto;
     margin-top: 10px;
+    background-color: honeydew;
+}
 
-}
 legend {
-    color: gray;
+    color: black
 }
+
