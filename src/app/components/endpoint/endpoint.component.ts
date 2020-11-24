@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges} from '@angular/core';
 import { tick } from '@angular/core/testing';
 
 @Component({
@@ -6,29 +6,30 @@ import { tick } from '@angular/core/testing';
   templateUrl: './endpoint.component.html',
   styleUrls: ['./endpoint.component.css']
 })
-export class EndpointComponent implements OnInit {
+export class EndpointComponent {
   @Input() name: string;
   @Input() props: any;
   @Input() typedEPName: string;
   @Input() typedEPTail: string;
   isExpanded: boolean = false;
 
-  constructor() { }
-
   onClick() {
     this.isExpanded = !this.isExpanded;
   }
 
-  ngOnInit(): void {
-  }
-
-  ngOnChanges() {
-    //console.log(this.typedEPName, this.typedEPTail)
-    if (this.typedEPName === this.name) {
-      this.isExpanded = true;
-    } else {
-      this.isExpanded = false;
+  ngOnChanges(changes: SimpleChanges) {
+    for (const propName in changes) {
+      if (changes.hasOwnProperty(propName)) {
+        switch (propName) {
+          case 'typedEPName': {
+            if (this.typedEPName === this.name) {
+              this.isExpanded = true;
+            } else {
+              this.isExpanded = false;
+            }
+          }
+        }
+      }
     }
   }
-  
 }

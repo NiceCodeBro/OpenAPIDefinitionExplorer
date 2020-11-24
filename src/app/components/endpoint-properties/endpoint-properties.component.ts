@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-endpoint-properties',
@@ -14,8 +14,6 @@ export class EndpointPropertiesComponent implements OnInit {
   hasSubProps: boolean = false;
   isExpanded: boolean = false;
 
-  constructor() { }
-
   onClick() {
     this.isExpanded = !this.isExpanded;
   }
@@ -25,12 +23,20 @@ export class EndpointPropertiesComponent implements OnInit {
     this.handleTypedTail();
   }
 
-  ngOnChanges() {
-    this.handleTypedTail();
+  ngOnChanges(changes: SimpleChanges) {
+    for (const propName in changes) {
+      if (changes.hasOwnProperty(propName)) {
+        switch (propName) {
+          case 'typedEPTail': {
+            this.handleTypedTail();
+          }
+        }
+      }
+    }
   }
 
   handleTypedTail() {
-    if (this.typedEPTail.length) {
+    if (this.typedEPTail && this.typedEPTail.length) {
       var splittedTail: Array<string> = this.typedEPTail.split(".");
 
       if (splittedTail && splittedTail.length) {

@@ -15,14 +15,12 @@ export class AppComponent {
 
   ngOnInit()	{
     var apiFileName = "openapi-complex.yaml";
-   // var apiFileName = "openapi-simple.yaml";
     this.openApiSpecParser(apiFileName)
   }
 
   onTextChange(textValue) {
     var splittedText: Array<string> = textValue.split(':');
     if(splittedText.length === 2) {
-      //console.log(splittedText);
       this.typedEPName = splittedText[0];
       this.typedEPTail = splittedText[1];
     } else {
