@@ -18,9 +18,9 @@
         <fieldset class="fieldset">
             <legend> Endpoints </legend>
             <div *ngFor="let endPoint of valEndPoints">
-                <app-endpoint [name]="endPoint.endPointName" [props]="endPoint.properties" 
-                              [typedEPName]="typedEPName" [typedEPTail]="typedEPTail">
-                </app-endpoint>
+                <treeview [name]="endPoint.endPointName" [props]="endPoint.properties" 
+                          [typedEPName]="typedEPName" [typedEPTail]="typedEPTail">
+                </treeview>
             </div>
         </fieldset>
     </div>

@@ -1,11 +1,12 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-endpoint-properties',
-  templateUrl: './endpoint-properties.component.html',
-  styleUrls: ['./endpoint-properties.component.css']
+  selector: 'treeview-child',
+  templateUrl: './treeview-child.component.html',
+  styleUrls: ['./treeview-child.component.css']
 })
-export class EndpointPropertiesComponent implements OnInit {
+
+export class TreeViewChildComponent implements OnInit {
   @Input() typedEPTail: string;
   @Input() dataKey: string;
   @Input() dataVal: string;

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EndpointPropertiesComponent } from './endpoint-properties.component';
+import { TreeViewChildComponent } from './treeview-child.component';
 
-describe('EndpointPropertiesComponent', () => {
-  let component: EndpointPropertiesComponent;
-  let fixture: ComponentFixture<EndpointPropertiesComponent>;
+describe('TreeViewChildComponent', () => {
+  let component: TreeViewChildComponent;
+  let fixture: ComponentFixture<TreeViewChildComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EndpointPropertiesComponent ]
+      declarations: [ TreeViewChildComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EndpointPropertiesComponent);
+    fixture = TestBed.createComponent(TreeViewChildComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

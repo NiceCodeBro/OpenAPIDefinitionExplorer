@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, SimpleChanges} from '@angular/core';
+import { Component, Input, SimpleChanges} from '@angular/core';
 
 @Component({
-  selector: 'app-endpoint',
-  templateUrl: './endpoint.component.html',
-  styleUrls: ['./endpoint.component.css']
+  selector: 'treeview',
+  templateUrl: './treeview.component.html',
+  styleUrls: ['./treeview.component.css']
 })
-export class EndpointComponent {
+export class TreeViewComponent {
   @Input() name: string;
   @Input() props: any;
   @Input() typedEPName: string;

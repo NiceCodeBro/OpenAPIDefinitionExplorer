@@ -1,3 +1,7 @@
+.treeview-child {
+    margin-left: 18px;
+}
+
 .sub-end-point {
     position: relative;
 }
@@ -5,3 +9,4 @@
 .end-point-property {
 
 }
+
