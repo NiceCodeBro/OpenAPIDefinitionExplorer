@@ -1,26 +1,26 @@
 <div class="treeview-child">
     <span class="sub-end-point" *ngIf="dataVal && hasSubProps" type="button"  (click)="onClick()">
-        <app-arrow [isExpanded]="isExpanded"></app-arrow> {{dataKey}}
+        <app-arrow [isExpanded]="isExpanded"></app-arrow>{{titel}}
     </span>
 
-    <div *ngIf="dataVal && isExpanded; then other_content1 else other_content2"></div>
+    <div *ngIf="dataVal && isExpanded; then children_content else titel_content"></div>
 
-    <ng-template #other_content1 >
+    <ng-template #children_content >
         <div  *ngIf="dataVal.type == 'object'">
             <div class="content" *ngFor="let item of dataVal.properties | keyvalue">
-                <treeview-child  [dataKey]="item.key" [dataVal]="item.value" [typedEPTail]="typedEPTailRest"></treeview-child>
+                <treeview-child  [titel]="item.key" [dataVal]="item.value" [typedEPTail]="typedEPTailRest"></treeview-child>
             </div>
         </div>
     </ng-template>
 
-    <ng-template #other_content2 >
+    <ng-template #titel_content >
         <div class="end-point-property" *ngIf="!hasSubProps">
-            <b>{{dataKey}}: </b> 
-            <span  *ngIf="dataVal.type == 'string' || dataVal.type == 'integer'">{{dataVal.type}} 
+            <b>{{titel}}: </b> 
+            <span *ngIf="dataVal.type == 'string' || dataVal.type == 'integer'">{{dataVal.type}} 
                 <span *ngIf="dataVal.description"> - {{dataVal.description}}</span>
             </span>
-            <span  *ngIf="dataVal.type == 'array'"> {{dataVal.type}}<{{dataVal.items.type}}></span>
-            <span  *ngIf="dataVal.type == 'number'">{{dataVal.type}}</span>
+            <span *ngIf="dataVal.type == 'array'"> {{dataVal.type}}<{{dataVal.items.type}}></span>
+            <span *ngIf="dataVal.type == 'number'">{{dataVal.type}}</span>
         </div>
     </ng-template>
 </div>

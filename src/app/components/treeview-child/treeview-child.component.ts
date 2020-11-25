@@ -8,7 +8,7 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 
 export class TreeViewChildComponent implements OnInit {
   @Input() typedEPTail: string;
-  @Input() dataKey: string;
+  @Input() titel: string;
   @Input() dataVal: string;
 
   typedEPTailRest: string;
@@ -42,7 +42,7 @@ export class TreeViewChildComponent implements OnInit {
 
       if (splittedTail && splittedTail.length) {
         var dataKey = splittedTail[0];
-        if (dataKey === this.dataKey) {
+        if (dataKey === this.titel) {
           this.isExpanded = true;
         } else { 
           this.isExpanded = false;
