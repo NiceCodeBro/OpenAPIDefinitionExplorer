@@ -1,12 +1,12 @@
 
-<span *ngIf="dataVal && hasSubProps" type="button"  (click)="onClick()" [ngStyle]="{'margin-left.px':10}">
-    <app-arrow [isExpanded]="isExpanded"></app-arrow>  {{dataKey}}
+<span class="sub-end-point" *ngIf="dataVal && hasSubProps" type="button"  (click)="onClick()" [ngStyle]="{'margin-left.px':18}">
+    <app-arrow [isExpanded]="isExpanded"></app-arrow> {{dataKey}}
 </span>
 
-<span *ngIf="dataVal && isExpanded; then other_content1 else other_content2"></span>
+<span *ngIf="dataVal && isExpanded; then other_content1 else other_content2"  [ngStyle]="{'margin-left.px':18}"></span>
 
 <ng-template #other_content1 >
-    <div  *ngIf="dataVal.type == 'object'" [ngStyle]="{'margin-left.px':10}">
+    <div  *ngIf="dataVal.type == 'object'" [ngStyle]="{'margin-left.px':15}">
         <div class="content" *ngFor="let item of dataVal.properties | keyvalue">
             <app-endpoint-properties  [dataKey]="item.key" [dataVal]="item.value" [typedEPTail]="typedEPTailRest"></app-endpoint-properties>
         </div>
@@ -14,7 +14,7 @@
 </ng-template>
 
 <ng-template #other_content2 >
-    <div *ngIf="!hasSubProps" [ngStyle]="{'margin-left.px':10}">
+    <div class="end-point-property" *ngIf="!hasSubProps" [ngStyle]="{'margin-left.px':18}">
         <b>{{dataKey}}: </b> 
         <span  *ngIf="dataVal.type == 'string' || dataVal.type == 'integer'">{{dataVal.type}} 
             <span *ngIf="dataVal.description"> - {{dataVal.description}}</span>

@@ -1,8 +1,10 @@
-<div type="button" (click)="onClick()"><app-arrow [isExpanded]="isExpanded"></app-arrow>{{name}}</div>
+<div class="end-point">
+    <div class="end-point-name" type="button" (click)="onClick()"><app-arrow [isExpanded]="isExpanded"></app-arrow>{{name}}</div>
 
-<div *ngIf="isExpanded; then content"></div>
-<ng-template #content>
-    <div *ngFor="let prop of props | keyvalue">
-        <app-endpoint-properties [dataKey]="prop.key" [dataVal]="prop.value" [typedEPTail]="typedEPTail"></app-endpoint-properties>
-    </div>
-</ng-template>
+    <div *ngIf="isExpanded; then content"></div>
+    <ng-template #content>
+        <div *ngFor="let prop of props | keyvalue">
+            <app-endpoint-properties [dataKey]="prop.key" [dataVal]="prop.value" [typedEPTail]="typedEPTail"></app-endpoint-properties>
+        </div>
+    </ng-template>
+</div>

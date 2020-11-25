@@ -1,9 +1,10 @@
 .arrow {
+    position: absolute;
     width: 15px;
     height: 15px;
-    margin-right: 3px;
-    position: relative;
     top: 3px;
+    left: -17px;
+    margin-right: 3px;
 }
 .expandedArrow {
     content: url("../../../assets/expanded_arrow_icon.svg");
