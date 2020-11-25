@@ -5,9 +5,14 @@
     </div>
 
     <div class="main-content">
+        <fieldset class="fieldset file-chooser">
+            <legend> File Chooser </legend>
+            <input type="file" accept=".yaml" (change)="onChangeSelectedFile($event.target.files)">
+        </fieldset>
+
         <fieldset class="fieldset path-fieldset">
             <legend> Path </legend>
-            <input class="text-field" type="text" (keyup)="onTextChange($event.target.value)">
+            <input class="text-field" type="text" placeholder="enter something" (keyup)="onTextChange($event.target.value)">
         </fieldset>
 
         <fieldset class="fieldset">

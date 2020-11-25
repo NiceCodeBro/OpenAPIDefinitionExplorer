@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, SimpleChanges} from '@angular/core';
-import { tick } from '@angular/core/testing';
 
 @Component({
   selector: 'app-endpoint',

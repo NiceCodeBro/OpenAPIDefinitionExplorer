@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import SwaggerParser from "@apidevtools/swagger-parser";
+import { read } from 'fs';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent {
   typedEPName: string;
   typedEPTail: string; 
 
+  asdasda:string;
 
   ngOnInit()	{
     var apiFileName = "openapi-complex.yaml";
@@ -28,10 +30,12 @@ export class AppComponent {
       this.typedEPTail = "";
     }
   }
-  
-  openApiSpecParser(apiFileName:string): Promise<any> {
-    const parser = new SwaggerParser();
 
+ 
+  
+  openApiSpecParser(apiFileName:string): any {
+    const parser = new SwaggerParser();
+    
     return parser.dereference(apiFileName).then((api)=> {
       for (let [key, value] of Object.entries(api.paths)) {
           //key: /random-string -  value: {get : {...}}
@@ -51,5 +55,24 @@ export class AppComponent {
           }
       }
     });
+  }
+
+  onChangeSelectedFile(file:any) {
+   
+   /* console.log(file[0]);
+    var reader = new FileReader();
+
+    reader.addEventListener("loadend", ()=> {
+
+    var blob = new Blob([reader.result], {type: 'text/plain'});*/
+    //link.href = window.URL.createObjectURL(blob);
+   // link.click();
+
+    //  new SwaggerParser().parse(blob)
+   // }
+    //this.openApiSpecParser(<string>reader.result)
+    //);
+   // reader.readAsText(file[0]);
+    
   }
 }
