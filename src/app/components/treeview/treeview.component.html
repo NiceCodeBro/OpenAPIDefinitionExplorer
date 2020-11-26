@@ -7,7 +7,7 @@
 
     <ng-template #show_child>
         <div *ngFor="let property of props.properties | keyvalue">
-            <treeview-child [child]="property" [path]="path"></treeview-child>
+            <treeview-child [props]="property" [path]="path"></treeview-child>
         </div>
     </ng-template>
 </div>

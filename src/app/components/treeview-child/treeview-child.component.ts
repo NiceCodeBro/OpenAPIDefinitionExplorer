@@ -7,11 +7,8 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 })
 
 export class TreeViewChildComponent implements OnInit {
-  @Input() child: string;
+  @Input() props: any;
   @Input() path: string[];
-
-  titel: string = "";
-  children: string = "";
 
   hasGrandchild: boolean = false;
   isExpanded: boolean = false;
@@ -21,19 +18,16 @@ export class TreeViewChildComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   // console.log(this.child)
-    this.titel = this.child['key'];
-    this.children = this.child['value'];
-    this.hasGrandchild = this.child['value']['properties'] !== undefined;
-/*
-    var tempProps = {
-      name: this.props['key'];
-      properties: this.props['value'];
-    }*/
+    this.hasGrandchild = this.props['value']['properties'] !== undefined;
+
+    this.props = {
+      name: this.props['key'],
+      ...this.props['value']
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.path.length > 0 && this.path[0] === this.titel) {
+    if (this.path.length > 0 && this.path[0] === this.props['name']) {
       this.isExpanded = true;
       this.path.shift();
     } else {
