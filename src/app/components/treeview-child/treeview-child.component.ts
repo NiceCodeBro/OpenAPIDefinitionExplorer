@@ -7,12 +7,13 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 })
 
 export class TreeViewChildComponent implements OnInit {
-  @Input() typedEPTail: string;
-  @Input() titel: string;
-  @Input() dataVal: string;
+  @Input() child: string;
+  @Input() path: string[];
 
-  typedEPTailRest: string;
-  hasSubProps: boolean = false;
+  titel: string = "";
+  children: string = "";
+
+  hasGrandchild: boolean = false;
   isExpanded: boolean = false;
 
   onClick() {
@@ -20,35 +21,23 @@ export class TreeViewChildComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.hasSubProps = this.dataVal['properties'] !== undefined;
-    this.handleTypedTail();
+   // console.log(this.child)
+    this.titel = this.child['key'];
+    this.children = this.child['value'];
+    this.hasGrandchild = this.child['value']['properties'] !== undefined;
+/*
+    var tempProps = {
+      name: this.props['key'];
+      properties: this.props['value'];
+    }*/
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    for (const propName in changes) {
-      if (changes.hasOwnProperty(propName)) {
-        switch (propName) {
-          case 'typedEPTail': {
-            this.handleTypedTail();
-          }
-        }
-      }
-    }
-  }
-
-  handleTypedTail() {
-    if (this.typedEPTail && this.typedEPTail.length) {
-      var splittedTail: Array<string> = this.typedEPTail.split(".");
-
-      if (splittedTail && splittedTail.length) {
-        var dataKey = splittedTail[0];
-        if (dataKey === this.titel) {
-          this.isExpanded = true;
-        } else { 
-          this.isExpanded = false;
-        }
-        this.typedEPTailRest = splittedTail.splice(1).join('.');
-      }
+    if (this.path.length > 0 && this.path[0] === this.titel) {
+      this.isExpanded = true;
+      this.path.shift();
+    } else {
+      this.isExpanded = false;
     }
   }
 }

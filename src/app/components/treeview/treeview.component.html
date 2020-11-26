@@ -1,10 +1,13 @@
-<div class="end-point">
-    <div class="end-point-name" type="button" (click)="onClick()"><app-arrow [isExpanded]="isExpanded"></app-arrow>{{name}}</div>
+<div class="treeview-container">
+    <div class="treeview-titel" type="button" (click)="onClick()">
+        <app-arrow [isExpanded]="isExpanded"></app-arrow>{{props.name}}
+    </div>
 
-    <div *ngIf="isExpanded; then content"></div>
-    <ng-template #content>
-        <div *ngFor="let prop of props | keyvalue">
-            <treeview-child [titel]="prop.key" [dataVal]="prop.value" [typedEPTail]="typedEPTail"></treeview-child>
+    <div *ngIf="isExpanded; then show_child"></div>
+
+    <ng-template #show_child>
+        <div *ngFor="let property of props.properties | keyvalue">
+            <treeview-child [child]="property" [path]="path"></treeview-child>
         </div>
     </ng-template>
 </div>

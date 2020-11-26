@@ -2,16 +2,6 @@
     margin-top: 50px;
 }
 
-.main-conteiner {
-    max-width: 70%;
-    min-width: 40%;
-    margin: auto;
-}
-
-.file-chooser {
-    margin-top: 50px;
-}
-
 .header {
     margin: auto;
     width: 50%;
@@ -21,7 +11,7 @@
     align-items: center;
 }
 
-.apiIcon {
+.api-icon {
     content: url("../assets/openapi_icon_132133.svg");
     width: 55px;
     margin-right: 10px;
@@ -29,6 +19,16 @@
 
 .header-text {
     font-size: 40px;
+}
+
+.main-container {
+    max-width: 70%;
+    min-width: 40%;
+    margin: auto;
+}
+
+.file-chooser {
+    margin-top: 50px;
 }
 
 .text-field {
@@ -48,4 +48,3 @@ fieldset {
 legend {
     color: black
 }
-

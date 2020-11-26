@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import SwaggerParser from "@apidevtools/swagger-parser";
-import { read } from 'fs';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +7,8 @@ import { read } from 'fs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'openapi-explorer';
-  valEndPoints = [];
-  typedEPName: string;
-  typedEPTail: string; 
-
-  asdasda:string;
+  validEndPoints = [];
+  splittedPath   = [];
 
   ngOnInit()	{
     var apiFileName = "openapi-complex.yaml";
@@ -23,12 +18,14 @@ export class AppComponent {
   onTextChange(textValue) {
     var splittedText: Array<string> = textValue.split(':');
     if(splittedText.length === 2) {
-      this.typedEPName = splittedText[0];
-      this.typedEPTail = splittedText[1];
-    } else {
-      this.typedEPName = "";
-      this.typedEPTail = "";
-    }
+      this.splittedPath = [];
+
+      this.splittedPath.push(splittedText[0]);
+
+      splittedText[1].split('.').map((text)=>{
+        this.splittedPath.push(text);
+      })
+    } 
   }
 
  
@@ -47,9 +44,11 @@ export class AppComponent {
                   if (value3['content'] && value3['content']['application/json'] && 
                       key3 && value3['content']['application/json'].schema) { 
                         
-                      var tempObj = { endPointName: key.substring(1)}
+                      var tempObj = { name: key.substring(1)}
+                      tempObj['type']='endpoint';
                       tempObj['properties'] = value3['content']['application/json'].schema.properties;
-                      this.valEndPoints.push(tempObj);
+                      this.validEndPoints.push(tempObj);
+                      console.log(this.validEndPoints)
                   }
               }
           }
@@ -58,21 +57,6 @@ export class AppComponent {
   }
 
   onChangeSelectedFile(file:any) {
-   
-   /* console.log(file[0]);
-    var reader = new FileReader();
 
-    reader.addEventListener("loadend", ()=> {
-
-    var blob = new Blob([reader.result], {type: 'text/plain'});*/
-    //link.href = window.URL.createObjectURL(blob);
-   // link.click();
-
-    //  new SwaggerParser().parse(blob)
-   // }
-    //this.openApiSpecParser(<string>reader.result)
-    //);
-   // reader.readAsText(file[0]);
-    
   }
 }

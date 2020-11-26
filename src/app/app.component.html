@@ -1,27 +1,29 @@
 <div class="container">
+
     <div class="header">
-        <img class="apiIcon">
-        <span class="header-text">OpenAPI Definition Explorer</span>
+        <img class="api-icon">
+        <span class="header-text"> OpenAPI Definition Explorer </span>
     </div>
 
-    <div class="main-conteiner">
-        <fieldset class="fieldset file-chooser">
+    <div class="main-container">
+
+        <fieldset class="file-chooser">
             <legend> File Chooser </legend>
             <input type="file" accept=".yaml" (change)="onChangeSelectedFile($event.target.files)">
         </fieldset>
 
-        <fieldset class="fieldset path-fieldset">
+        <fieldset>
             <legend> Path </legend>
             <input class="text-field" type="text" placeholder="enter something" (keyup)="onTextChange($event.target.value)">
         </fieldset>
 
-        <fieldset class="fieldset">
+        <fieldset>
             <legend> Endpoints </legend>
-            <div *ngFor="let endPoint of valEndPoints">
-                <treeview [name]="endPoint.endPointName" [props]="endPoint.properties" 
-                          [typedEPName]="typedEPName" [typedEPTail]="typedEPTail">
-                </treeview>
+            <div *ngFor="let endPoint of validEndPoints">
+                <treeview [props]="endPoint" [path]="splittedPath" ></treeview>
             </div>
         </fieldset>
+        
     </div>
+
 </div>

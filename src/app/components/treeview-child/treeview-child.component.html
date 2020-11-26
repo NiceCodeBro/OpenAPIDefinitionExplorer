@@ -1,26 +1,24 @@
 <div class="treeview-child">
-    <span class="sub-end-point" *ngIf="dataVal && hasSubProps" type="button"  (click)="onClick()">
+    <span class="treeview-child-titel" *ngIf="children && hasGrandchild" type="button"  (click)="onClick()">
         <app-arrow [isExpanded]="isExpanded"></app-arrow>{{titel}}
     </span>
 
-    <div *ngIf="dataVal && isExpanded; then children_content else titel_content"></div>
+    <div *ngIf="children && isExpanded; then show_children else show_properties"></div>
 
-    <ng-template #children_content >
-        <div  *ngIf="dataVal.type == 'object'">
-            <div class="content" *ngFor="let item of dataVal.properties | keyvalue">
-                <treeview-child  [titel]="item.key" [dataVal]="item.value" [typedEPTail]="typedEPTailRest"></treeview-child>
-            </div>
+    <ng-template #show_children >
+        <div *ngFor="let item of children.properties | keyvalue">
+            <treeview-child  [child]="item" [path]="path"></treeview-child>
         </div>
     </ng-template>
 
-    <ng-template #titel_content >
-        <div class="end-point-property" *ngIf="!hasSubProps">
+    <ng-template #show_properties >
+        <div *ngIf="!hasGrandchild">
             <b>{{titel}}: </b> 
-            <span *ngIf="dataVal.type == 'string' || dataVal.type == 'integer'">{{dataVal.type}} 
-                <span *ngIf="dataVal.description"> - {{dataVal.description}}</span>
+            <span *ngIf="children.type == 'string' || children.type == 'integer'">{{children.type}} 
+                <span *ngIf="children.description"> - {{children.description}}</span>
             </span>
-            <span *ngIf="dataVal.type == 'array'"> {{dataVal.type}}<{{dataVal.items.type}}></span>
-            <span *ngIf="dataVal.type == 'number'">{{dataVal.type}}</span>
+            <span *ngIf="children.type == 'array'"> {{children.type}}<{{children.items.type}}></span>
+            <span *ngIf="children.type == 'number'">{{children.type}}</span>
         </div>
     </ng-template>
 </div>
