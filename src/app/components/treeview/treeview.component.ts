@@ -6,7 +6,7 @@ import { Component, Input} from '@angular/core';
   styleUrls: ['./treeview.component.css']
 })
 export class TreeViewComponent {
-  @Input() props: any;
+  @Input() node: any;
   @Input() path: string[];
   isExpanded: boolean = false;
 
@@ -15,7 +15,7 @@ export class TreeViewComponent {
   }
 
   ngOnChanges() {
-    if (this.path.length > 0 && this.path[0] === this.props.name) {
+    if (this.path.length > 0 && this.path[0] === this.node.name) {
       this.isExpanded = true;
       this.path.shift();
     } else {

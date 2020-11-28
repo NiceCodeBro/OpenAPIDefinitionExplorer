@@ -1,13 +1,13 @@
 <div class="treeview-container">
     <div class="treeview-titel" type="button" (click)="onClick()">
-        <app-arrow [isExpanded]="isExpanded"></app-arrow>{{props.name}}
+        <app-arrow [isExpanded]="isExpanded"></app-arrow>{{node.name}}
     </div>
 
     <div *ngIf="isExpanded; then show_child"></div>
 
     <ng-template #show_child>
-        <div *ngFor="let property of props.properties | keyvalue">
-            <treeview-child [props]="property" [path]="path"></treeview-child>
+        <div *ngFor="let property of node.properties | keyvalue">
+            <treeview-child [node]="property" [path]="path"></treeview-child>
         </div>
     </ng-template>
 </div>
