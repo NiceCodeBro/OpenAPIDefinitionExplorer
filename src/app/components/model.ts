@@ -1,6 +1,6 @@
-//export type NodeTypes = 'string' | 'number' | 'integer' | 'array' | 'object';
+//export type PropertyTypes = 'string' | 'number' | 'integer' | 'array' | 'object';
 
-export enum NodeTypes {
+export enum PropertyTypes {
     STRING = "string",
     NUMBER = "number",
     INTEGER = "integer",
@@ -8,8 +8,8 @@ export enum NodeTypes {
     OBJECT = "object"
   }
 
-export interface INode {
-    type: NodeTypes;
+export interface IProperty {
+    type: PropertyTypes;
     name?: string;
     description?: string;
     properties?: object;

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import {INode} from '../model';
+import { IProperty } from '../model';
 
 @Component({
   selector: 'treeview-child',
@@ -8,7 +8,7 @@ import {INode} from '../model';
 })
 
 export class TreeViewChildComponent implements OnInit {
-  @Input() prop: INode;
+  @Input() prop: IProperty;
   @Input() path: string[];
 
   isExpanded: boolean = false;

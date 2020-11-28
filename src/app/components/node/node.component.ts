@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { INode } from '../model';
+import { IProperty } from '../model';
 
 @Component({
   selector: 'node',
@@ -7,7 +7,7 @@ import { INode } from '../model';
   styleUrls: ['./node.component.css']
 })
 export class NodeComponent implements OnInit {
-  @Input() prop: INode;
+  @Input() prop: IProperty;
   @Input() isExpanded: boolean;
 
   hasGrandchild: boolean = false;

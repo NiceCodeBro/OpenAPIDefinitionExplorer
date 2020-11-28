@@ -1,5 +1,5 @@
 import { Component, Input} from '@angular/core';
-import {INode} from '../model';
+import { IProperty } from '../model';
 
 @Component({
   selector: 'treeview',
@@ -7,7 +7,7 @@ import {INode} from '../model';
   styleUrls: ['./treeview.component.css']
 })
 export class TreeViewComponent {
-  @Input() prop: INode;
+  @Input() prop: IProperty;
   @Input() path: string[];
   
   isExpanded: boolean = false;
