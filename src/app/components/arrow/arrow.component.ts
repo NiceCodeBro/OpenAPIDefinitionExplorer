@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./arrow.component.css']
 })
 export class ArrowComponent implements OnInit {
-  @Input() isExpanded: any;
+  @Input() isExpanded: boolean;
 
   constructor() { }
 

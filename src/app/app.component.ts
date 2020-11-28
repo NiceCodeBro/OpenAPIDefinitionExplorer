@@ -11,7 +11,7 @@ export class AppComponent {
   splittedPath   = [];
 
   ngOnInit()	{
-    var apiFileName = "openapi-complex.yaml";
+    const apiFileName = "openapi-complex.yaml";
     this.openApiSpecParser(apiFileName)
   }
 
@@ -30,10 +30,10 @@ export class AppComponent {
 
  
   
-  openApiSpecParser(apiFileName:string): any {
+  openApiSpecParser(apiFileName:string): void {
     const parser = new SwaggerParser();
     
-    return parser.dereference(apiFileName).then((api)=> {
+    parser.dereference(apiFileName).then((api)=> {
       for (let [key, value] of Object.entries(api.paths)) {
           //key: /random-string -  value: {get : {...}}
           for (let [key2, value2] of Object.entries(value)) {
@@ -48,7 +48,6 @@ export class AppComponent {
                       tempObj['type']='endpoint';
                       tempObj['properties'] = value3['content']['application/json'].schema.properties;
                       this.validEndPoints.push(tempObj);
-                      console.log(this.validEndPoints)
                   }
               }
           }
