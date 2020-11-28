@@ -7,8 +7,9 @@ import {INode} from '../model';
   styleUrls: ['./treeview.component.css']
 })
 export class TreeViewComponent {
-  @Input() node: INode;
+  @Input() prop: INode;
   @Input() path: string[];
+  
   isExpanded: boolean = false;
 
   onClick() {
@@ -16,7 +17,7 @@ export class TreeViewComponent {
   }
 
   ngOnChanges() {
-    if (this.path.length > 0 && this.path[0] === this.node.name) {
+    if (this.path.length > 0 && this.path[0] === this.prop.name) {
       this.isExpanded = true;
       this.path.shift();
     } else {

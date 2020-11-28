@@ -1,24 +1,11 @@
 <div class="treeview-child">
-    <span class="treeview-child-titel" *ngIf="hasGrandchild" type="button"  (click)="onClick()">
-        <app-arrow [isExpanded]="isExpanded"></app-arrow>{{node.name}}
-    </span>
+    <div class="treeview-child-titel" type="button"  (click)="onClick()">
+       <node [isExpanded]="isExpanded" [prop]="prop"></node>
+    </div>
 
-    <div *ngIf="node && isExpanded; then show_children else show_properties"></div>
-
-    <ng-template #show_children >
-        <div *ngFor="let property of node.properties | keyvalue">
-            <treeview-child  [node]="property" [path]="path"></treeview-child>
+    <div *ngIf="isExpanded">
+        <div *ngFor="let prop of prop.properties | keyvalue">
+            <treeview-child [prop]="prop" [path]="path"></treeview-child>
         </div>
-    </ng-template>
-
-    <ng-template #show_properties >
-        <div *ngIf="node.type != 'object'">
-            <b>{{node.name}}: </b> 
-            <span *ngIf="node.type == 'string' || node.type == 'integer'">{{node.type}} 
-                <span *ngIf="node.description"> - {{node.description}}</span>
-            </span>
-            <span *ngIf="node.type == 'array'"> {{node.type}}<{{node.items.type}}></span>
-            <span *ngIf="node.type == 'number'">{{node.type}}</span>
-        </div>
-    </ng-template>
+    </div>
 </div>

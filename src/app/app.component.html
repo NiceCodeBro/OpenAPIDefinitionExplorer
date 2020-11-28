@@ -20,7 +20,7 @@
         <fieldset>
             <legend> Endpoints </legend>
             <div *ngFor="let endPoint of validEndPoints">
-                <treeview [node]="endPoint" [path]="splittedPath" ></treeview>
+                <treeview [prop]="endPoint" [path]="splittedPath" ></treeview>
             </div>
         </fieldset>
         

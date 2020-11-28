@@ -8,10 +8,9 @@ import {INode} from '../model';
 })
 
 export class TreeViewChildComponent implements OnInit {
-  @Input() node: INode;
+  @Input() prop: INode;
   @Input() path: string[];
 
-  hasGrandchild: boolean = false;
   isExpanded: boolean = false;
 
   onClick() {
@@ -19,15 +18,14 @@ export class TreeViewChildComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.node = {
-      name: this.node['key'],
-      ...this.node['value']
+    this.prop = {
+      name: this.prop['key'],
+      ...this.prop['value']
     }
-    this.hasGrandchild = this.node.properties !== undefined;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.path.length > 0 && this.path[0] === this.node.name) {
+    if (this.path.length > 0 && this.path[0] === this.prop.name) {
       this.isExpanded = true;
       this.path.shift();
     } else {
