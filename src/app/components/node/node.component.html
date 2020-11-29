@@ -1,17 +1,19 @@
 <div  (click)="onClick()">
-    <ng-container *ngIf="hasGrandchild; then parent_node; else leaf_node"></ng-container>
+    <ng-container *ngIf="hasOwnChildren; then parent_node; else leaf_node"></ng-container>
 
     <ng-template #parent_node>
         <app-arrow [isExpanded]="isExpanded"></app-arrow> {{prop.name}}
     </ng-template>
 
     <ng-template #leaf_node>
-        <b>{{prop.name}}:</b> 
-        <span *ngIf="prop.type == 'string' || prop.type == 'integer'"> {{prop.type}} 
-            <span *ngIf="prop.description"> - {{prop.description}} </span>
-        </span>
-        <span *ngIf="prop.type == 'array'"> {{prop.type}}<{{prop.items.type}}> </span>
-        <span *ngIf="prop.type == 'number'"> {{prop.type}} </span>
-
+        <div [ngSwitch]="prop.type">
+            <b>{{prop.name}}:</b> 
+            <span *ngSwitchCase="'string' || 'integer'"> {{prop.type}} 
+                <span> - {{prop.description}} </span>
+            </span>
+            <span *ngSwitchCase="'array'"> {{prop.type}}<{{prop.items.type}}> </span>
+            <span *ngSwitchCase="'number'"> {{prop.type}} </span>
+            <span *ngSwitchDefault> {{prop.type}} </span>
+        </div>
     </ng-template>
 </div>

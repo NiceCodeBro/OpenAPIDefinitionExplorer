@@ -1,13 +1,11 @@
 <div class="treeview-container">
     <div class="treeview-titel" type="button">
-       <node [prop]="prop" (isExpandedOut)="onIsExpandedUpdate($event)">rrwqeeqwe</node>
+       <node [prop]="prop" (isExpandedOut)="onIsExpandedUpdate($event)"></node>
     </div>
 
-    <ng-container *ngIf="isExpanded; then show_child"></ng-container>
-
-   <ng-template #show_child>
-        <div *ngFor="let property of prop.properties | keyvalue">
-           <treeview [prop]="property" [path]="path"></treeview>
-        </div>
-    </ng-template> 
+    <ng-container *ngIf="isExpanded">
+      <div *ngFor="let property of prop.properties | keyvalue">
+         <treeview [prop]="property" [path]="path"></treeview>
+      </div>
+    </ng-container>
 </div>

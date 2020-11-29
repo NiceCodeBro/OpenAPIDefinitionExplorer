@@ -27,8 +27,6 @@ export class AppComponent {
       })
     } 
   }
-
- 
   
   openApiSpecParser(apiFileName:string): void {
     const parser = new SwaggerParser();
@@ -48,7 +46,6 @@ export class AppComponent {
                       tempObj['type']='endpoint';
                       tempObj['properties'] = value3['content']['application/json'].schema.properties;
                       this.validEndPoints.push(tempObj);
-                      console.log(this.validEndPoints)
                   }
               }
           }

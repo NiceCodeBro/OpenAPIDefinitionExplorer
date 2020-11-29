@@ -11,21 +11,14 @@ export class NodeComponent implements OnInit {
   @Output() isExpandedOut = new EventEmitter();
 
   isExpanded: boolean = false;
-  hasGrandchild: boolean = false;
+  hasOwnChildren: boolean = false;
 
   onClick() {
     this.isExpanded = !this.isExpanded;
     this.isExpandedOut.emit(this.isExpanded);
   }
 
-  constructor() { }
-
   ngOnInit(): void {
-    this.hasGrandchild = this.prop.properties !== undefined;
-  }
-
-  ngOnChanges() {
-    console.log(this.prop, this.isExpanded)
-  }
-  
+    this.hasOwnChildren = this.prop.properties !== undefined;
+  }  
 }

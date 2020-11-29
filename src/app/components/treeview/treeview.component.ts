@@ -1,5 +1,4 @@
 import { Component, Input} from '@angular/core';
-import { prototype } from 'events';
 import { IProperty } from '../model';
 
 @Component({

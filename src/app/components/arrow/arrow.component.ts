@@ -12,6 +12,4 @@ export class ArrowComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-
 }
