@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { IProperty } from '../model';
 
 @Component({
@@ -9,10 +9,27 @@ import { IProperty } from '../model';
 export class TreeViewComponent {
   @Input() prop: IProperty;
   @Input() path: string[];
-  isExpanded: boolean = false;
+  @Output() openedPathOut = new EventEmitter<object>();
 
-  onIsExpandedUpdate(event) {
-    this.isExpanded = event;
+  isExpanded: boolean = false;
+  allOpened = [];
+
+  onIsExpandedUpdate(isExpanded) {
+    this.isExpanded = isExpanded;
+    if ( this.isExpanded) {
+      this.allOpened.push(this.prop.name);
+      this.openedPathOut.emit(this.allOpened);
+    } else {
+      this.openedPathOut.emit([]);
+    }
+  }
+
+  onOpenedPathUpdate(obj) {
+    var temp = [];
+    temp.push(this.prop.name);
+    temp.push(...obj);
+    
+    this.openedPathOut.emit(temp);
   }
 
   ngOnInit(): void {

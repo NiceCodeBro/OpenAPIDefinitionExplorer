@@ -6,6 +6,7 @@ import { IProperty } from '../model';
   templateUrl: './node.component.html',
   styleUrls: ['./node.component.css']
 })
+
 export class NodeComponent implements OnInit {
   @Input() prop: IProperty;
   @Output() isExpandedOut = new EventEmitter();
@@ -20,5 +21,5 @@ export class NodeComponent implements OnInit {
 
   ngOnInit(): void {
     this.hasOwnChildren = this.prop.properties !== undefined;
-  }  
+  }
 }

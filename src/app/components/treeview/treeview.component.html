@@ -5,7 +5,7 @@
 
     <ng-container *ngIf="isExpanded">
       <div *ngFor="let property of prop.properties | keyvalue">
-         <treeview [prop]="property" [path]="path"></treeview>
+         <treeview [prop]="property" [path]="path" (openedPathOut)="onOpenedPathUpdate($event)"></treeview>
       </div>
     </ng-container>
 </div>
