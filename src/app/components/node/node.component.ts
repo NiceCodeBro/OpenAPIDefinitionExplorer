@@ -23,4 +23,9 @@ export class NodeComponent implements OnInit {
   ngOnInit(): void {
     this.hasGrandchild = this.prop.properties !== undefined;
   }
+
+  ngOnChanges() {
+    console.log(this.prop, this.isExpanded)
+  }
+  
 }

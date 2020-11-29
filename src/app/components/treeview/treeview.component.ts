@@ -1,4 +1,5 @@
 import { Component, Input} from '@angular/core';
+import { prototype } from 'events';
 import { IProperty } from '../model';
 
 @Component({
@@ -12,8 +13,17 @@ export class TreeViewComponent {
   isExpanded: boolean = false;
 
   onIsExpandedUpdate(event) {
-    console.log(event)
     this.isExpanded = event;
+  }
+
+  ngOnInit(): void {
+    if (this.prop.hasOwnProperty('key') && 
+        this.prop.hasOwnProperty('value')) {
+          this.prop = {
+            name: this.prop['key'],
+            ...this.prop['value']
+          }
+    }
   }
 
   ngOnChanges() {
