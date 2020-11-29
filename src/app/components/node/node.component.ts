@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IProperty } from '../model';
 
 @Component({
@@ -8,9 +8,15 @@ import { IProperty } from '../model';
 })
 export class NodeComponent implements OnInit {
   @Input() prop: IProperty;
-  @Input() isExpanded: boolean;
+  @Output() isExpandedOut = new EventEmitter();
 
+  isExpanded: boolean = false;
   hasGrandchild: boolean = false;
+
+  onClick() {
+    this.isExpanded = !this.isExpanded;
+    this.isExpandedOut.emit(this.isExpanded);
+  }
 
   constructor() { }
 

@@ -9,11 +9,11 @@ import { IProperty } from '../model';
 export class TreeViewComponent {
   @Input() prop: IProperty;
   @Input() path: string[];
-  
   isExpanded: boolean = false;
 
-  onClick() {
-    this.isExpanded = !this.isExpanded;
+  onIsExpandedUpdate(event) {
+    console.log(event)
+    this.isExpanded = event;
   }
 
   ngOnChanges() {
