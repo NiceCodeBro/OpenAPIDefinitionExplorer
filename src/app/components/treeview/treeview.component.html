@@ -1,11 +1,16 @@
 <div class="treeview-container">
-    <div class="treeview-titel" type="button">
-       <node [prop]="prop" (isExpandedOut)="onIsExpandedUpdate($event)"></node>
+    <div class="treeview-titel" type="button" (click)="onTreeviewTitelClicked()">
+       <node [prop]="prop" [isExpanded]="isExpanded"></node>
     </div>
 
     <ng-container *ngIf="isExpanded">
       <div *ngFor="let property of prop.properties | keyvalue">
-         <treeview [prop]="property" [path]="path" (openedPathOut)="onOpenedPathUpdate($event)"></treeview>
+         <span *ngIf="property.value.properties">
+            <treeview [prop]="transformProp(property)" [path]="path" (openedPathOut)="onOpenedPathUpdate($event)"></treeview>
+         </span>
+         <span *ngIf="!property.value.properties">
+            <node [prop]="transformProp(property)" [isBold]="clickedNodeName == property.key" (clickedNameOut)="handleClickedNameUpdate($event)"></node>
+         </span>
       </div>
     </ng-container>
 </div>

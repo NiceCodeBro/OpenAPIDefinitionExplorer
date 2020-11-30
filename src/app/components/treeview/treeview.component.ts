@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter} from '@angular/core';
+import { tick } from '@angular/core/testing';
 import { IProperty } from '../../models/model';
 
 @Component({
@@ -9,45 +10,58 @@ import { IProperty } from '../../models/model';
 export class TreeViewComponent {
   @Input() prop: IProperty;
   @Input() path: string[];
-  @Output() openedPathOut = new EventEmitter<object>();
+  @Output() openedPathOut = new EventEmitter<Array<string>>();
 
   isExpanded: boolean = false;
-  allOpened = [];
+  clickedNodeName: string = "";
+  
+  onTreeviewTitelClicked() {
+    this.isExpanded = !this.isExpanded;
+    if (this.isExpanded === false) {
+      this.clickedNodeName = "";
+    }
+  }
 
-  onIsExpandedUpdate(isExpanded) {
-    this.isExpanded = isExpanded;
+  handleClickedNameUpdate(aName) {
     if ( this.isExpanded) {
-      this.allOpened.push(this.prop.name);
-      this.openedPathOut.emit(this.allOpened);
+      this.clickedNodeName = aName;
+
+      var pathToClickedNode = [];
+      pathToClickedNode.push(this.prop.name);
+      pathToClickedNode.push(aName);
+      this.openedPathOut.emit(pathToClickedNode);
     } else {
+      this.clickedNodeName = "";
       this.openedPathOut.emit([]);
     }
   }
 
-  onOpenedPathUpdate(obj) {
-    var temp = [];
-    temp.push(this.prop.name);
-    temp.push(...obj);
-    
-    this.openedPathOut.emit(temp);
+  onOpenedPathUpdate(aPathToClickedNode) {
+    var pathToClickedNode = [];
+    pathToClickedNode.push(this.prop.name);
+    pathToClickedNode.push(...aPathToClickedNode);
+    this.openedPathOut.emit(pathToClickedNode);
   }
 
-  ngOnInit(): void {
-    if (this.prop.hasOwnProperty('key') && 
-        this.prop.hasOwnProperty('value')) {
-          this.prop = {
-            name: this.prop['key'],
-            ...this.prop['value']
+  transformProp(aProp) {
+    if (aProp.hasOwnProperty('key') && 
+        aProp.hasOwnProperty('value')) {
+          return {
+            name: aProp['key'],
+            ...aProp['value']
           }
     }
+    return aProp;
   }
 
   ngOnChanges() {
-    if (this.path.length > 0 && this.path[0] === this.prop.name) {
-      this.isExpanded = true;
+    
+
+    /* if (this.path.length > 0 && this.path[0] === this.prop.name) {
+     // this.isExpanded = true;
       this.path.shift();
     } else {
-      this.isExpanded = false;
-    }
+      //this.isExpanded = false;
+    }*/
   }
 }

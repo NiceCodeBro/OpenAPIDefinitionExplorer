@@ -9,14 +9,14 @@ import { IProperty } from '../../models/model';
 
 export class NodeComponent implements OnInit {
   @Input() prop: IProperty;
-  @Output() isExpandedOut = new EventEmitter();
+  @Input() isExpanded: boolean = false;
+  @Input() isBold: boolean = false;
+  @Output() clickedNameOut = new EventEmitter<string>();
 
-  isExpanded: boolean = false;
   hasOwnChildren: boolean = false;
 
-  onClick() {
-    this.isExpanded = !this.isExpanded;
-    this.isExpandedOut.emit(this.isExpanded);
+  onLeafNodeClicked() {
+    this.clickedNameOut.emit(this.prop.name);
   }
 
   ngOnInit(): void {

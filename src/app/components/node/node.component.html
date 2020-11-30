@@ -1,4 +1,4 @@
-<div  (click)="onClick()">
+<div>
     <ng-container *ngIf="hasOwnChildren; then parent_node; else leaf_node"></ng-container>
 
     <ng-template #parent_node>
@@ -6,8 +6,8 @@
     </ng-template>
 
     <ng-template #leaf_node>
-        <div [ngSwitch]="prop.type">
-            <b>{{prop.name}}:</b> 
+        <div class="leafNode" [ngSwitch]="prop.type" (click)="onLeafNodeClicked()">
+            <span [ngClass]="{'leafNode-name' : isBold}">{{prop.name}}:</span> 
             <span *ngSwitchCase="'string' || 'integer'"> {{prop.type}} 
                 <span> - {{prop.description}} </span>
             </span>

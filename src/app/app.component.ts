@@ -32,7 +32,7 @@ export class AppComponent {
         }
       }
     })
-    this.onTextChange(this.inputValue);
+    //this.onTextChange(this.inputValue);
   }
 
   onTextChange(textValue) {
