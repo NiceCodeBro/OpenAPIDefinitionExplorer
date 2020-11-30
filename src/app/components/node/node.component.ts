@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IProperty } from '../model';
+import { IProperty } from '../../models/model';
 
 @Component({
   selector: 'node',
