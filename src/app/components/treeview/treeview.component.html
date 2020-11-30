@@ -5,14 +5,16 @@
 
    <div [className]="isExpanded ? 'treeview-properties-hidden' : 'treeview-properties-visible'">
       <div *ngFor="let property of prop.properties | keyvalue">
-         <span *ngIf="property.value.properties">
-            <treeview [prop]="transformProp(property)" [path]="path" (openedPathOut)="onOpenedPathUpdate($event)"></treeview>
-         </span>
-         
-         <span *ngIf="!property.value.properties">
-            <node [prop]="transformProp(property)" (clickedNameOut)="handleClickedNameUpdate($event)">
-            </node>
-         </span>
+         <node *ngIf="!property.value.properties" 
+               [prop]="transformProp(property)" 
+               (clickedNameOut)="handleClickedNameUpdate($event)">
+         </node>
+      </div>
+      <div *ngFor="let property of prop.properties | keyvalue">
+         <treeview *ngIf="property.value.properties" 
+                   [prop]="transformProp(property)"
+                   (openedPathOut)="onOpenedPathUpdate($event)">
+         </treeview>
       </div>
    </div>
 </div>
