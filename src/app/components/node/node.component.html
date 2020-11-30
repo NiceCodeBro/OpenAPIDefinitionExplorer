@@ -9,7 +9,7 @@
         <div class="leafNode" [ngSwitch]="prop.type" (click)="onLeafNodeClicked()">
             <span [ngClass]="{'leafNode-name' : isBold}">{{prop.name}}:</span> 
             <span *ngSwitchCase="'string' || 'integer'"> {{prop.type}} 
-                <span> - {{prop.description}} </span>
+                <span *ngIf="prop.description"> - {{prop.description}} </span>
             </span>
             <span *ngSwitchCase="'array'"> {{prop.type}}<{{prop.items.type}}> </span>
             <span *ngSwitchCase="'number'"> {{prop.type}} </span>

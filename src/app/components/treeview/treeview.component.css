@@ -6,3 +6,10 @@
     position: relative;
 }
 
+.treeview-properties-visible {
+    display: none;
+}
+
+.treeview-properties-hidden {
+    display: hidden;
+}

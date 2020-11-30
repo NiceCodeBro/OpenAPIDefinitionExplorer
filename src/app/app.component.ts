@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {openApiSpecParser} from '../services/swaggerservice';
+import { TreeviewService } from './service/treeview.service';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,11 @@ export class AppComponent {
   splittedPath   = [];
   inputValue = "";
 
+  constructor() {}
+
   ngOnInit()	{
     const apiFileName = "openapi-complex.yaml";    
-    //const apiFileName = "openapi-simple.yaml";    
+   // const apiFileName = "openapi-simple.yaml";    
     this.validEndPoints = openApiSpecParser(apiFileName)
   }
 
@@ -23,30 +26,15 @@ export class AppComponent {
 
     this.inputValue = "";
     obj.map((o, i)=>{
-      if(i == 0)
+      if(i == 0) {
         this.inputValue += o + ':';
-      else {
+      } else {
         this.inputValue += o;
         if (obj.length !== i + 1) {
           this.inputValue += '.';
         }
       }
-    })
-    //this.onTextChange(this.inputValue);
-  }
+    });
 
-  onTextChange(textValue) {
-    var splittedText: Array<string> = textValue.split(':');
-    if(splittedText.length === 2) {
-      this.splittedPath = [];
-
-      this.splittedPath.push(splittedText[0]);
-
-      splittedText[1].split('.').map((text)=>{
-        this.splittedPath.push(text);
-      })
-    } else {
-      this.splittedPath = [];
-    }
   }
 }
