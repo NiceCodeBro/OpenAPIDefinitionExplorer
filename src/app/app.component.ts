@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {openApiSpecParser} from '../services/swaggerservice';
-import { TreeviewService } from './service/treeview.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +9,6 @@ import { TreeviewService } from './service/treeview.service';
 
 export class AppComponent {
   validEndPoints = [];
-  splittedPath   = [];
   inputValue = "";
 
   constructor() {}
@@ -21,20 +19,19 @@ export class AppComponent {
     this.validEndPoints = openApiSpecParser(apiFileName)
   }
 
-  onOpenedPathUpdate(obj) {
-    obj = [...new Set(obj)]
+  handlePathToClickedNodeUpdate(path) {
+  //  path = [...new Set(path)]
 
     this.inputValue = "";
-    obj.map((o, i)=>{
+    path.map((o, i)=>{
       if(i == 0) {
         this.inputValue += o + ':';
       } else {
         this.inputValue += o;
-        if (obj.length !== i + 1) {
+        if (path.length !== i + 1) {
           this.inputValue += '.';
         }
       }
     });
-
   }
 }

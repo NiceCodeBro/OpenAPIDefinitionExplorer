@@ -12,12 +12,12 @@ import * as uuid from 'uuid';
 export class NodeComponent implements OnInit {
   @Input() prop: IProperty;
   @Input() isExpanded: boolean = false;
-  @Input() isBold: boolean = false;
   @Output() clickedNameOut = new EventEmitter<string>();
   componentId = uuid.v4();
 
   hasOwnChildren: boolean = false;
   lastSelectedCompID = "";
+  isBold: boolean = false;
 
   constructor(private treeviewService: TreeviewService) {}
 

@@ -9,7 +9,6 @@ import { IProperty } from '../../models/model';
 })
 export class TreeViewComponent {
   @Input() prop: IProperty;
-  @Input() path: string[];
   @Output() openedPathOut = new EventEmitter<Array<string>>();
   isExpanded: boolean = false;
 
