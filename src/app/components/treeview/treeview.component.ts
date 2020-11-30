@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { TreeviewService } from 'src/app/service/treeview.service';
 import { IProperty } from '../../models/model';
@@ -5,7 +6,7 @@ import { IProperty } from '../../models/model';
 @Component({
   selector: 'treeview',
   templateUrl: './treeview.component.html',
-  styleUrls: ['./treeview.component.css'],
+  styleUrls: ['./treeview.component.css']
 })
 export class TreeViewComponent {
   @Input() prop: IProperty;

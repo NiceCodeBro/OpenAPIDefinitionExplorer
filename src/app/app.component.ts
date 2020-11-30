@@ -9,7 +9,7 @@ import {openApiSpecParser} from '../services/swaggerservice';
 
 export class AppComponent {
   validEndPoints = [];
-  inputValue = "";
+  pathText = "";
 
   constructor() {}
 
@@ -22,14 +22,14 @@ export class AppComponent {
   handlePathToClickedNodeUpdate(path) {
   //  path = [...new Set(path)]
 
-    this.inputValue = "";
+    this.pathText = "";
     path.map((o, i)=>{
       if(i == 0) {
-        this.inputValue += o + ':';
+        this.pathText += o + ':';
       } else {
-        this.inputValue += o;
+        this.pathText += o;
         if (path.length !== i + 1) {
-          this.inputValue += '.';
+          this.pathText += '.';
         }
       }
     });

@@ -1,15 +1,15 @@
-.treeview-container {
-    padding-left: 20px;
-}
+.treeview {}
 
 .treeview-titel {
     position: relative;
 }
 
-.treeview-properties-visible {
-    display: none;
+.treeview-properties {
+    display: block;
+    margin-left: 15px;
 }
 
+
 .treeview-properties-hidden {
-    display: hidden;
+    display: none;
 }

@@ -1,3 +1,15 @@
-.leafNode-name {
+.node {
+    margin-left: 15px;
+}
+
+.node-parentnode {}
+
+.node-leafnode {}
+
+.node-leafnode-name {
     font-weight: bold;
+}
+
+.node-leafnode-type {
+    color: blue;
 }

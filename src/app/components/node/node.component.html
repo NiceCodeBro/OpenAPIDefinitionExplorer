@@ -1,22 +1,21 @@
-<div>
+<div class="node">
     <ng-container *ngIf="hasOwnChildren; then parent_node; else leaf_node"></ng-container>
 
     <ng-template #parent_node>
-        <app-arrow [isExpanded]="isExpanded"></app-arrow> {{prop.name}}
+        <div class="node-parentnode">
+            <app-arrow [isExpanded]="isExpanded"></app-arrow> {{prop.name}}
+        </div>
     </ng-template>
 
     <ng-template #leaf_node>
-        <div class="leafNode" [ngSwitch]="prop.type" (click)="onLeafNodeClicked()">
-            <span [ngClass]="{'leafNode-name' : isBold}">{{prop.name}}:</span> 
-            <span *ngSwitchCase="'string'"> {{prop.type}} 
-                <span *ngIf="prop.description"> - {{prop.description}} </span>
-            </span>
-            <span *ngSwitchCase="'integer'"> {{prop.type}} 
-                <span *ngIf="prop.description"> - {{prop.description}} </span>
-            </span>
-            <span *ngSwitchCase="'array'"> {{prop.type}}<{{prop.items.type}}> </span>
-            <span *ngSwitchCase="'number'"> {{prop.type}} </span>
+        <div class="node-leafnode" [ngSwitch]="prop.type" (click)="onLeafNodeClicked()">
+            <span [ngClass]="{'node-leafnode-name' : isBold}">{{prop.name}}:</span> 
+            <span *ngSwitchCase="'string'" class="node-leafnode-type"> {{prop.type}} </span>
+            <span *ngSwitchCase="'integer'" class="node-leafnode-type"> {{prop.type}} </span>
+            <span *ngSwitchCase="'array'" class="node-leafnode-type"> {{prop.type}}<{{prop.items.type}}> </span>
+            <span *ngSwitchCase="'number'" class="node-leafnode-type"> {{prop.type}} </span>
             <span *ngSwitchDefault> {{prop.type}} </span>
+            <span *ngIf="prop.description"> - {{prop.description}} </span>
         </div>
     </ng-template>
 </div>
