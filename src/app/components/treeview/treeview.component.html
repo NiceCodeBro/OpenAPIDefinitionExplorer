@@ -3,20 +3,20 @@
        <node [prop]="prop" [isExpanded]="isExpanded"></node>
     </div>
 
-   <div class="treeview-properties" [ngClass]="{'treeview-properties-hidden' : !isExpanded}" >
-      <span>
+   <div class="treeview-properties" [ngClass]="{'treeview-properties-hidden' : !isExpanded}">
+         <!-- rendering treeview nodes with no child first -->
          <div *ngFor="let property of prop.properties | keyvalue">
             <node *ngIf="!property.value.properties" 
                   [prop]="transformProp(property)" 
                   (clickedNameOut)="handleClickedNameUpdate($event)" > 
             </node>
          </div>
+         <!-- if treeview has grandchild, then they must be accepted as another treeview -->
          <div *ngFor="let property of prop.properties | keyvalue">
             <treeview *ngIf="property.value.properties" 
                      [prop]="transformProp(property)"
                      (openedPathOut)="onOpenedPathUpdate($event)">
             </treeview>
          </div>
-      </span>
    </div>
 </div>

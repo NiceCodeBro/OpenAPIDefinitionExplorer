@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {openApiSpecParser} from '../services/swaggerservice';
+import { openApiSpecParser } from '../services/swaggerservice';
 
 @Component({
   selector: 'app-root',
@@ -8,29 +8,30 @@ import {openApiSpecParser} from '../services/swaggerservice';
 })
 
 export class AppComponent {
-  validEndPoints = [];
-  pathText = "";
+  validEndPoints: Array<Object> = [];
+  pathText: string = '';
 
   constructor() {}
 
   ngOnInit()	{
-    const apiFileName = "openapi-complex.yaml";    
-   // const apiFileName = "openapi-simple.yaml";    
+    // static file configuration should be done here.
+    const apiFileName: string = 'openapi-complex.yaml';
+    // const apiFileName = 'openapi-simple.yaml';    
+
     this.validEndPoints = openApiSpecParser(apiFileName)
   }
 
-  handlePathToClickedNodeUpdate(path) {
-  //  path = [...new Set(path)]
+  handlePathToClickedNodeUpdate(path: Array<string>) {
+    //path = [...new Set(path)]
 
-    this.pathText = "";
-    path.map((o, i)=>{
-      if(i == 0) {
-        this.pathText += o + ':';
-      } else {
-        this.pathText += o;
-        if (path.length !== i + 1) {
-          this.pathText += '.';
-        }
+    this.pathText = '';
+    path.map((elm, i) => {
+      this.pathText += elm;
+      
+      if(i === 0) { //if first element
+        this.pathText += ':'; 
+      } else if (path.length !== i + 1) { //if not last element
+        this.pathText += '.';
       }
     });
   }

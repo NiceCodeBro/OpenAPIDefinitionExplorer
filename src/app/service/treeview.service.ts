@@ -4,8 +4,12 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * TreeviewService which is used to manage remote states
+ * of a treeview, node components
+ **/
 export class TreeviewService {
-  private lastSelectedCompID = new BehaviorSubject<string>("");
+  private lastSelectedCompID = new BehaviorSubject<string>('');
   currentSelectedCompID = this.lastSelectedCompID.asObservable()
 
   constructor() {}
