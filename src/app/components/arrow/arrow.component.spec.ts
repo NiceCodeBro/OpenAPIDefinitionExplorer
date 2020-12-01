@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ArrowComponent } from './arrow.component';
 
 describe('ArrowComponent', () => {
@@ -8,9 +8,8 @@ describe('ArrowComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ArrowComponent ]
-    })
-    .compileComponents();
+      declarations: [ArrowComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -10,10 +10,8 @@ import { BehaviorSubject } from 'rxjs';
  **/
 export class TreeviewService {
   private lastSelectedCompID = new BehaviorSubject<string>('');
-  currentSelectedCompID = this.lastSelectedCompID.asObservable()
+  currentSelectedCompID = this.lastSelectedCompID.asObservable();
 
-  constructor() {}
-  
   setLastSelectedCompID(aLastHighlighted: string): void {
     this.lastSelectedCompID.next(aLastHighlighted);
   }

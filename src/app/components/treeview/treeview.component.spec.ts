@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TreeViewComponent } from './treeview.component';
 import { IProperty, PropertyTypes } from '../../models/model';
@@ -7,27 +8,27 @@ describe('TreeViewComponent', () => {
   let component: TreeViewComponent;
   let fixture: ComponentFixture<TreeViewComponent>;
 
-  let fakeProperty : IProperty = {
-    name: "y",
+  const fakeProperty: IProperty = {
+    name: 'y',
     type: PropertyTypes.OBJECT,
     properties: {
       timestamp: {
-        description: "Relative timestamp in Milliseconds. If device is having ...ince startup of device.",
-        format: "int64",
-        type: "integer"
+        description:
+          'Relative timestamp in Milliseconds. If device is having ...ince startup of device.',
+        format: 'int64',
+        type: 'integer'
       },
       value: {
-        format: "double",
-        type: "number"
+        format: 'double',
+        type: 'number'
       }
     }
-  }
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TreeViewComponent ]
-    })
-    .compileComponents();
+      declarations: [TreeViewComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -44,10 +45,16 @@ describe('TreeViewComponent', () => {
   it('should have x number of children component which depends on own input prop', () => {
     component.isExpanded = true;
     fixture.detectChanges();
-    var titelChildElementCount = fixture.debugElement.query(By.css('.treeview-titel')).nativeNode.childElementCount;
+    const titelChildElementCount = fixture.debugElement.query(
+      By.css('.treeview-titel')
+    ).nativeNode.childElementCount;
     expect(titelChildElementCount).toBe(1);
 
-    var propertiesChildElementCount = fixture.debugElement.query(By.css('.treeview-properties')).nativeNode.childElementCount;
-    expect(propertiesChildElementCount).toBe(Object.keys(fakeProperty.properties).length * 2); // 2* -> because of double for loop in treeview 
+    const propertiesChildElementCount = fixture.debugElement.query(
+      By.css('.treeview-properties')
+    ).nativeNode.childElementCount;
+    expect(propertiesChildElementCount).toBe(
+      Object.keys(fakeProperty.properties).length * 2
+    ); // 2* -> because of double for loop in treeview
   });
 });

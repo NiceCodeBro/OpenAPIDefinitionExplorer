@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NodeComponent } from './node.component';
 import { IProperty, PropertyTypes } from '../../models/model';
@@ -5,17 +6,19 @@ import { IProperty, PropertyTypes } from '../../models/model';
 describe('NodeComponent', () => {
   let component: NodeComponent;
   let fixture: ComponentFixture<NodeComponent>;
-  let fakeProperty : IProperty = {
-    description: "Relative timestamp in Milliseconds. If device is having a RT.",
-    name: "timestamp",
-    type: PropertyTypes.INTEGER,
-  }
-
-  let fakeProperty2 : IProperty = {
-    description: "Relative timestamp in Milliseconds. If device is having a RT.",
-    name: "timestamp",
+  const fakeProperty: IProperty = {
+    description:
+      'Relative timestamp in Milliseconds. If device is having a RT.',
+    name: 'timestamp',
     type: PropertyTypes.INTEGER
-  }
+  };
+
+  const fakeProperty2: IProperty = {
+    description:
+      'Relative timestamp in Milliseconds. If device is having a RT.',
+    name: 'timestamp',
+    type: PropertyTypes.INTEGER
+  };
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NodeComponent);
@@ -30,8 +33,10 @@ describe('NodeComponent', () => {
   });
 
   it('should has unique component id', () => {
-    let anotherComponent = TestBed.createComponent(NodeComponent);
+    const anotherComponent = TestBed.createComponent(NodeComponent);
     anotherComponent.componentInstance.prop = fakeProperty2;
-    expect(anotherComponent.componentInstance.componentId).not.toBe(component.componentId);
+    expect(anotherComponent.componentInstance.componentId).not.toBe(
+      component.componentId
+    );
   });
 });
