@@ -14,7 +14,7 @@ export class AppComponent {
 
   ngOnInit() {
     // static file configuration should be done here.
-    const apiFileName = 'openapi-complex.yaml';
+    const apiFileName = 'openapi-complex.yaml'; //->>>>>>>>>>change it to test other files
     // const apiFileName = 'openapi-simple.yaml';
 
     this.validEndPoints = openApiSpecParser(apiFileName);
