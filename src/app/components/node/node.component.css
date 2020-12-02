@@ -1,15 +1,32 @@
 .node {
     margin-left: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+    -webkit-box-orient: vertical;
 }
 
-.node-parentnode {}
+.node-parentnode {
+    cursor: pointer;
+}
 
-.node-leafnode {}
+.node-leafnode { }
 
 .node-leafnode-name {
-    font-weight: bold;
+    cursor: pointer;
 }
 
 .node-leafnode-type {
-    color: rgb(44, 44, 204);
+    color: rgb(17, 85, 204);
 }
+
+.node-leafnode-description {
+    color: gray;
+}
+
+.node-leafnode-description:hover {
+    color: black;
+    filter: brightness(135%);
+}
+  
