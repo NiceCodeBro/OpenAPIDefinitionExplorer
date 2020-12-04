@@ -54,7 +54,7 @@ export class AppComponent {
     reader.onloadend = (e) => {
       this.http
         .post(
-          'http://localhost:3000/parseMe',
+          'http://localhost:3000/api/v1.0/parser/swaggerparser',
           { filecontent: reader.result },
           {
             headers: new HttpHeaders({
