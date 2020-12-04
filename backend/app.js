@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 app.use(cors()) //cors middleware
 
 app.use(express.json());
-
+app.use('/api', require('./api'));
 app.post('/parseMe', (req, res) => {
 
   const uniqueFilename = `${uuidv4()}.yaml`
