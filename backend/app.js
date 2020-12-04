@@ -1,4 +1,5 @@
 const SwaggerParser = require("@apidevtools/swagger-parser");
+const { v4: uuidv4 } = require('uuid');
 
 const express = require('express')
 const cors = require('cors')
@@ -6,25 +7,35 @@ const fs = require('fs');
 
 const app = express()
 const port = 3000
-app.use(cors())
+app.use(cors()) //cors middleware
 
 app.use(express.json());
 
 app.post('/parseMe', (req, res) => {
 
-    console.log(req.body.filecontent)
-    fs.writeFile("./files/file.yaml", req.body.filecontent, function(err) {
-        if(err) {
-            return console.log(err);
-        }
-      //  console.log("The file was saved!");
-        var asd = openApiSpecParser('./files/file.yaml')
-    
-        asd.then((a)=> {
-         //   console.log(a[0].name);
-            res.status(200).send(JSON.stringify(a))
-        })
-    }); 
+  const uniqueFilename = `${uuidv4()}.yaml`
+  const filePath = `./files/${uniqueFilename}`;
+
+  fs.writeFile(filePath, req.body.filecontent, function(err) {
+    if(err) {
+        return console.log(err);
+    }
+
+    const validEndPoints = openApiSpecParser(filePath)
+
+    try {
+      //try to delete the created file, since there is no need to have it more.
+      fs.unlinkSync(filePath);
+    }
+    // If an error occurred while deleting files
+    catch(err) {
+      console.error(err);
+    }
+
+    return validEndPoints.then((endPoints) => {
+        return res.status(200).send(JSON.stringify(endPoints))
+    });
+  }); 
 });
 
 app.listen(port, () => {
