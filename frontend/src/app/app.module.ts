@@ -6,7 +6,7 @@ import { TreeViewComponent } from './components/treeview/treeview.component';
 import { ArrowComponent } from './components/arrow/arrow.component';
 import { NodeComponent } from './components/node/node.component';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,11 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ArrowComponent,
     NodeComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule
-  ],
+  imports: [BrowserModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

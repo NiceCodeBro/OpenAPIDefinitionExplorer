@@ -6,6 +6,12 @@
     </div>
 
     <div class="app-content">
+        <fieldset class="app-content-filechooser">
+            <legend class="app-content-filechooser-titel"> FileChooser </legend>
+            <input type="file" accept="yaml" (change)="change($event)">
+
+        </fieldset>
+
         <fieldset class="app-content-path">
             <legend class="app-content-path-titel"> Path </legend>
             <span class="app-content-path-textfield"> {{pathText}} </span>
