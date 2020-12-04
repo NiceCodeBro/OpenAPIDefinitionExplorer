@@ -38,8 +38,13 @@ legend {
     color: black
 }
 
-.app-content-path {
+.app-content-filechooser {
     margin-top: 50px;
+}
+
+.app-content-filechooser-titel {}
+
+.app-content-path {
     height: 40px;
 }
 

@@ -13,6 +13,10 @@
 
 .node-leafnode { }
 
+.node-leafnode span:not(:first-child) {
+    cursor: default;
+}
+
 .node-leafnode-name {
     cursor: pointer;
 }

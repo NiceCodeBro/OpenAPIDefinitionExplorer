@@ -10,12 +10,12 @@
     <ng-template #leaf_node>
         <div class="node-leafnode" [ngSwitch]="prop.type">
             <span class="node-leafnode-name" [ngStyle]="{'font-weight': isBold ? 'bold' : ''}" (click)="onLeafNodeClicked()">{{prop.name}}:</span> 
-            <span *ngSwitchCase="'string'"  class="node-leafnode-type"> {{prop.type}} </span>
-            <span *ngSwitchCase="'integer'" class="node-leafnode-type"> {{prop.type}} </span>
-            <span *ngSwitchCase="'array'"   class="node-leafnode-type"> {{prop.type}}<{{prop.items.type}}> </span>
-            <span *ngSwitchCase="'number'"  class="node-leafnode-type"> {{prop.type}} </span>
+            <span *ngSwitchCase="'string'"   class="node-leafnode-type"> {{prop.type}} </span>
+            <span *ngSwitchCase="'integer'"  class="node-leafnode-type"> {{prop.type}} </span>
+            <span *ngSwitchCase="'array'"    class="node-leafnode-type"> {{prop.type}}<{{prop.items.type}}> </span>
+            <span *ngSwitchCase="'number'"   class="node-leafnode-type"> {{prop.type}} </span>
             <span *ngSwitchDefault> {{prop.type}} </span>
-            <span *ngIf="prop.description" class="node-leafnode-description" [title]="prop.description"> - {{prop.description}} </span>
+            <span *ngIf="prop.description"   class="node-leafnode-description" [title]="prop.description"> - {{prop.description}} </span>
         </div>
     </ng-template>
 </div>

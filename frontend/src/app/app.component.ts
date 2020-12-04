@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Component } from '@angular/core';
-import { openApiSpecParser } from '../services/swaggerservice';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -40,54 +39,25 @@ export class AppComponent {
     });
   }
 
-  change(event: any) {
+  handleFileChange(event: any) {
     const file = event.target.files[0];
-    console.log(file);
     const reader = new FileReader();
 
     reader.readAsText(file);
-    /*
-    reader.onload = function () {
-      console.log(reader.result);
-      this.fileContent = reader.result;
-    };*/
-    reader.onloadend = (e) => {
+    reader.onloadend = () => {
       this.http
         .post(
           'http://localhost:3000/api/v1.0/parser/swaggerparser',
           { filecontent: reader.result },
-          {
-            headers: new HttpHeaders({
-              'Content-Type': 'application/json'
-            })
-          }
+          { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
         )
         .toPromise()
-        .then((a) => {
-          console.log(a);
-          this.validEndPoints = a;
-        })
-        .catch((a) => console.log(a));
+        .then((a) => (this.validEndPoints = a))
+        .catch((err) => console.log(err));
     };
 
     reader.onerror = function () {
       console.log(reader.error);
     };
-
-    /*  this.http
-      .post(
-        'http://localhost:3000/parseMe',
-        { asd: 'bu bir post mesajidir', data: event.target.files[0] },
-        {
-          headers: new HttpHeaders({
-            'Content-Type': 'application/json'
-          })
-        }
-      )
-      .toPromise()
-      .then((a) => {
-        console.log(a);
-      })
-      .catch((a) => console.log(a));*/
   }
 }
