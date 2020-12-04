@@ -6,7 +6,8 @@ const cors = require('cors')
 const fs = require('fs');
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000;
+
 app.use(cors()) //cors middleware
 
 app.use(express.json());
@@ -39,7 +40,7 @@ app.post('/parseMe', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Openapi Explorer APP is listening at http://localhost:${port}`)
 })
 
 function openApiSpecParser(apiFileName) {
