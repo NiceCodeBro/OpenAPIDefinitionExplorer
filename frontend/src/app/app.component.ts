@@ -39,11 +39,11 @@ export class AppComponent {
     });
   }
 
-  handleFileChange(event: any) {
-    const file = event.target.files[0];
+  handleFileChange(choosedFiles: object) {
+    const choosedFile = choosedFiles[0];
     const reader = new FileReader();
 
-    reader.readAsText(file);
+    reader.readAsText(choosedFile);
     reader.onloadend = () => {
       this.http
         .post(
