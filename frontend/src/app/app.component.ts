@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Component } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { openApiSpecParser } from '../services/swaggerservice';
+import { TreeviewService } from './service/treeview.service';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +10,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  validEndPoints: any = [];
+  validEndPoints: object = [];
   pathText = '';
   fileContent = '';
+  responseText = '';
+  isBackendActive = true;
 
-  constructor(private http: HttpClient) {}
+  //
+  constructor(private treeviewService: TreeviewService) {}
 
   ngOnInit() {
     // static file configuration should be done here.
-    //const apiFileName = 'openapi-complex.yaml'; //->>>>>>>>>>change it to test other files
-    // const apiFileName = 'openapi-simple.yaml';
-    // this.validEndPoints = openApiSpecParser(apiFileName);
+    if (!this.isBackendActive) {
+      const apiFileName = 'openapi-complex.yaml';
+      this.validEndPoints = openApiSpecParser(apiFileName);
+    }
   }
 
   handlePathToClickedNodeUpdate(path: Array<string>) {
@@ -29,35 +34,47 @@ export class AppComponent {
     path.map((elm, i) => {
       this.pathText += elm;
 
+      //if first element
       if (i === 0) {
-        //if first element
         this.pathText += ':';
-      } else if (path.length !== i + 1) {
-        //if not last element
+      }
+      //if not last element
+      else if (path.length !== i + 1) {
         this.pathText += '.';
       }
     });
   }
 
   handleFileChange(choosedFiles: object) {
-    const choosedFile = choosedFiles[0];
+    const choosedFile = choosedFiles[0]; //get file choosed first
     const reader = new FileReader();
 
     reader.readAsText(choosedFile);
+
     reader.onloadend = () => {
-      this.http
-        .post(
-          'http://localhost:3000/api/v1.0/parser/swaggerparser',
-          { filecontent: reader.result },
-          { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
-        )
-        .toPromise()
-        .then((a) => (this.validEndPoints = a))
-        .catch((err) => console.log(err));
+      const fileContent = reader.result as string;
+
+      //api call
+      this.treeviewService.getParsedOpenAPIFile(fileContent).subscribe(
+        (res) => {
+          this.validEndPoints = res;
+          this.handleResponseText('Success!');
+        },
+        (err) => {
+          this.handleResponseText('Server dont response or bad request.');
+        }
+      );
     };
 
-    reader.onerror = function () {
-      console.log(reader.error);
+    reader.onerror = () => {
+      this.handleResponseText('Error occurred while reading file.');
     };
+  }
+
+  handleResponseText(responseText: string) {
+    this.responseText = responseText;
+    setTimeout(() => {
+      this.responseText = '';
+    }, 4000);
   }
 }

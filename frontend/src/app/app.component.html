@@ -6,10 +6,10 @@
     </div>
 
     <div class="app-content">
-        <fieldset class="app-content-filechooser">
+        <fieldset class="app-content-filechooser" *ngIf="isBackendActive">
             <legend class="app-content-filechooser-titel"> FileChooser </legend>
             <input type="file" accept=".yaml" (change)="handleFileChange($event.target.files)" single>
-
+            <span class="app-content-responsetext">{{responseText}}</span>
         </fieldset>
 
         <fieldset class="app-content-path">

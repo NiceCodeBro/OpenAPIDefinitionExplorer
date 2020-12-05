@@ -25,6 +25,8 @@
     max-width: 70%;
     min-width: 40%;
     margin: auto;
+    margin-top: 50px;
+
 }
 
 fieldset {
@@ -38,11 +40,15 @@ legend {
     color: black
 }
 
-.app-content-filechooser {
-    margin-top: 50px;
-}
+.app-content-filechooser {}
 
 .app-content-filechooser-titel {}
+
+.app-content-responsetext {
+    margin-left: 30px;
+    color: brown;
+    font-weight: bold;
+}
 
 .app-content-path {
     height: 40px;
