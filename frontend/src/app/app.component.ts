@@ -10,14 +10,22 @@ import { TreeviewService } from './service/treeview.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  //this contains parse results of a *.yaml open api file
   validEndPoints: object = [];
-  pathText = '';
 
-  responseText = '';
+  // this contains all name of elements from main treeview to clicked node
+  pathToSelectedNode = '';
+
+  //this indicates whether backend is desired to be used
   isBackendActive = true;
 
+  //The following 3 variables are used if isBackendActive is true.
+  //this contains text which is shown on screen on error/success cases
+  stateIndicator = '';
+  //it is set to true if state of api call is pending
   isContentLoading = false;
-  contentLoadingStyle = '';
+  //it is used to rotate api icon on pending state.
+  apiIconStyle = '';
 
   constructor(private treeviewService: TreeviewService) {}
 
@@ -29,34 +37,44 @@ export class AppComponent {
     }
   }
 
-  handlePathToClickedNodeUpdate(path: Array<string>) {
+  /**
+   * this handels text to be shown in path component
+   * @param paths which contains all node names in sequence
+   */
+  handlePathToClickedNodeUpdate(paths: Array<string>) {
     //path = [...new Set(path)]
 
-    this.pathText = '';
-    path.map((elm, i) => {
-      this.pathText += elm;
+    this.pathToSelectedNode = '';
+    paths.map((elm, i) => {
+      this.pathToSelectedNode += elm;
 
       //if first element
       if (i === 0) {
-        this.pathText += ':';
+        this.pathToSelectedNode += ':';
       }
       //if not last element
-      else if (path.length !== i + 1) {
-        this.pathText += '.';
+      else if (paths.length !== i + 1) {
+        this.pathToSelectedNode += '.';
       }
     });
   }
 
+  /**
+   * This is called if a file is choosed
+   * @param choosedFiles event from input component
+   */
   handleFileChange(choosedFiles: object) {
-    this.validEndPoints = []; // reset old state
-    this.pathText = '';
-    this.responseText = '';
+    // reset old state
+    this.validEndPoints = [];
+    this.pathToSelectedNode = '';
+    this.stateIndicator = '';
 
-    const choosedFile = choosedFiles[0]; //get file choosed first
+    const choosedFile = choosedFiles[0]; //get first choosed file
     const reader = new FileReader();
 
     reader.readAsText(choosedFile);
 
+    //file is read successfully
     reader.onloadend = () => {
       const fileContent = reader.result as string;
       this.isContentLoading = true;
@@ -69,7 +87,7 @@ export class AppComponent {
           this.handleResponseText('Success!');
           this.isContentLoading = false;
         },
-        (err) => {
+        () => {
           this.handleResponseText('Server dont response or bad request.');
           this.isContentLoading = false;
         }
@@ -82,20 +100,27 @@ export class AppComponent {
     };
   }
 
-  handleResponseText(responseText: string) {
-    this.responseText = responseText;
+  /**
+   * setting variable with desired text for 4 seconds
+   * @param stateIndicator
+   */
+  handleResponseText(state: string) {
+    this.stateIndicator = state;
     setTimeout(() => {
-      this.responseText = '';
+      this.stateIndicator = '';
     }, 4000);
   }
 
+  /**
+   * it controls life cycle of rotation of api icon
+   */
   handleLoadingSpin() {
-    this.contentLoadingStyle = 'rotating 1s linear infinite';
+    this.apiIconStyle = 'rotating 1s linear infinite';
     setTimeout(() => {
       if (this.isContentLoading) {
         this.handleLoadingSpin();
       } else {
-        this.contentLoadingStyle = '';
+        this.apiIconStyle = '';
       }
     }, 1000);
   }
