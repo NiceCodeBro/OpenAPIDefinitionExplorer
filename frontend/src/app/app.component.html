@@ -1,7 +1,7 @@
 <div class="app">
 
     <div class="app-header">
-        <img class="app-header-icon">
+        <img class="app-header-icon" [ngStyle]="{'animation': contentLoadingStyle}">
         <span class="app-header-text"> OpenAPI Definition Explorer </span>
     </div>
 
@@ -9,7 +9,7 @@
         <fieldset class="app-content-filechooser" *ngIf="isBackendActive">
             <legend class="app-content-filechooser-titel"> FileChooser </legend>
             <input type="file" accept=".yaml" (change)="handleFileChange($event.target.files)" single>
-            <span class="app-content-responsetext">{{responseText}}</span>
+            <span class="app-content-responsetext" [ngStyle]="responseText === 'Success!' && {'color': 'green'}">{{responseText}}</span>
         </fieldset>
 
         <fieldset class="app-content-path">

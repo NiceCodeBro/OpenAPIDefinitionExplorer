@@ -12,11 +12,13 @@ import { TreeviewService } from './service/treeview.service';
 export class AppComponent {
   validEndPoints: object = [];
   pathText = '';
-  fileContent = '';
+
   responseText = '';
   isBackendActive = true;
 
-  //
+  isContentLoading = false;
+  contentLoadingStyle = '';
+
   constructor(private treeviewService: TreeviewService) {}
 
   ngOnInit() {
@@ -46,6 +48,10 @@ export class AppComponent {
   }
 
   handleFileChange(choosedFiles: object) {
+    this.validEndPoints = []; // reset old state
+    this.pathText = '';
+    this.responseText = '';
+
     const choosedFile = choosedFiles[0]; //get file choosed first
     const reader = new FileReader();
 
@@ -53,21 +59,26 @@ export class AppComponent {
 
     reader.onloadend = () => {
       const fileContent = reader.result as string;
+      this.isContentLoading = true;
+      this.handleLoadingSpin();
 
       //api call
       this.treeviewService.getParsedOpenAPIFile(fileContent).subscribe(
         (res) => {
           this.validEndPoints = res;
           this.handleResponseText('Success!');
+          this.isContentLoading = false;
         },
         (err) => {
           this.handleResponseText('Server dont response or bad request.');
+          this.isContentLoading = false;
         }
       );
     };
 
     reader.onerror = () => {
       this.handleResponseText('Error occurred while reading file.');
+      this.isContentLoading = false;
     };
   }
 
@@ -76,5 +87,16 @@ export class AppComponent {
     setTimeout(() => {
       this.responseText = '';
     }, 4000);
+  }
+
+  handleLoadingSpin() {
+    this.contentLoadingStyle = 'rotating 1s linear infinite';
+    setTimeout(() => {
+      if (this.isContentLoading) {
+        this.handleLoadingSpin();
+      } else {
+        this.contentLoadingStyle = '';
+      }
+    }, 1000);
   }
 }

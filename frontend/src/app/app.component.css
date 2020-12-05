@@ -15,6 +15,17 @@
     content: url("../assets/openapi_icon_132133.svg");
     width: 55px;
     margin-right: 10px;
+    transition: all 1s ease;
+}
+
+
+@keyframes rotating {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+    }
 }
 
 .app-header-text {
@@ -26,7 +37,6 @@
     min-width: 40%;
     margin: auto;
     margin-top: 50px;
-
 }
 
 fieldset {
@@ -64,7 +74,9 @@ legend {
     font-size: 20px;
 }
 
-.app-content-endpoints {}
+.app-content-endpoints {
+    min-height: 40px;
+}
 
 .app-content-endpoints-titel {}
 

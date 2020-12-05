@@ -37,16 +37,13 @@ export class NodeComponent implements OnInit {
 
   ngOnChanges(): void {
     this.isBold = this.componentId === this.lastSelectedCompID;
-    //if (this.isExpanded === false && this.componentId === this.lastSelectedCompID) {
-    // this.treeviewService.setLastSelectedCompID('');
-    //}
   }
 
   /**
    * It is called when it' own property clicked
    **/
   onLeafNodeClicked(): void {
-    //transmitting name of this node
+    //transmitting name of this node to parent component
     this.clickedNameOut.emit(this.prop.name);
 
     //saving component id to compare it later on to be able to show last clicked property as bold
