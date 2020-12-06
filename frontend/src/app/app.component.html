@@ -20,8 +20,7 @@
         <fieldset class="app-content-endpoints">
             <legend class="app-content-endpoints-titel"> Endpoints </legend>
             <div class="app-content-endpoints-content" *ngFor="let endPoint of validEndPoints">
-                <treeview [prop]="endPoint" [path]="splittedPath" 
-                          (openedPathOut)="handlePathToClickedNodeUpdate($event)" ></treeview>
+                <treeview [prop]="endPoint"(openedPathOut)="handlePathToClickedNodeUpdate($event)" ></treeview>
             </div>
         </fieldset>
     </div>  

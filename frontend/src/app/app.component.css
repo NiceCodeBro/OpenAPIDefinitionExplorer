@@ -12,7 +12,7 @@
 }
 
 .app-header-icon {
-    content: url("../assets/openapi_icon_132133.svg");
+    content: url("../assets/openapi_icon.svg");
     width: 55px;
     margin-right: 10px;
     transition: all 1s ease;
