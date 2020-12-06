@@ -8,7 +8,7 @@ To be able to parse open api file, [API DevTools](https://github.com/APIDevTools
 Frontend was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
 Precondition: this application accepts only valid open api `*.yaml`  file.
 #### Development server
-Run `cd frontend` and `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `cd frontend` and `ng serve -o` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 #### Build
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 #### Running unit tests
@@ -19,7 +19,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 <img src="examplelook.png" alt="Frontend App Components" width="650"/>
 
 ##### Application Components
-<img src="applicationcomponents.png" alt="App Components" width="400"/>
+<img src="applicationcomponents.png" alt="App Components" width="650"/>
 
 ### 2. Backend
 Backend was generated with [Express JS](https://expressjs.com/) version 4.17.1.
