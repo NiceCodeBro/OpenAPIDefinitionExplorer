@@ -49,3 +49,4 @@ frontend/debug.log
 
 #Backend files
 backend/files/*
+backend/static/
